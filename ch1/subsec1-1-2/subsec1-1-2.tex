@@ -1,0 +1,236 @@
+\RequirePackage{plautopatch}
+\documentclass[uplatex, a4paper, 14Q, dvipdfmx]{jsreport}
+\usepackage{docmute}
+\usepackage{../../mypackage}
+
+\setcounter{secnumdepth}{4}
+\title{1.1.2 \texorpdfstring{$\infty$}{infty}圏}
+\author{Keima Akasaka}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{chapter}{1}
+\setcounter{section}{1} 
+\setcounter{subsection}{1}   
+\setcounter{subsubsection}{1}
+
+\subsection{\texorpdfstring{$\infty$}{infty}圏}
+
+高次圏論の数多くの定式化の中で, \cref{def.1.1.1.6}は最も簡単な方法である. 
+しかし, 実際にこの定義を扱うことは非常に困難である. 
+高次圏論における基本的な構成は自然に$\infty$圏を定めるが, そこでの射の合成は(コヒーレントな)ホモトピーの違いを除いて結合的である(1.2節を参照).
+位相的圏の枠組みのみで考えるためには, これらの構成をstraighteningな手続きと組み合わせて, 強結合的な合成法則を定める必要がある. 
+この構成は常に可能である(\cite{HTT} Theorem.2.2.5.1を参照)が, 最初からより柔軟な$\infty$圏の理論で考えた方が技術的に便利である. 
+幸いなことに, このような理論には, Segal圏(Segal category), 完備Segal空間(complete Segal space), およびモデル圏(model category)など多くの候補がある. 
+これらの概念と関係をすべて扱うことは, 本書の主目的から大きく逸脱する. 
+しかし, 高次圏論における様々な構成を扱うためには, これらのアプローチのうち1つを使用する必要がある. 
+本書では, Boardman-Vogtによる弱Kan複体(weak Kan complex)の理論を採用する. 
+これらの対象は, Joyalにより詳しく研究され, 擬圏(quasi-category)と呼ばれている. 
+ここでは, 擬圏を単に$\infty$圏と呼ぶことにする. 
+
+$\infty$圏$\C$とはどのようなものか感覚をつかむために, 次の2つの極端な状況を考えよう. 
+$\C$のすべての射が可逆であれば, $\C$はある位相空間$X$の基本$\infty$亜群と同値である. 
+このような場合は, 高次圏論は古典的なホモトピー論に帰着される. 
+一方, $\C$が任意の$n>1$に対して非自明な$n$射を持たないとき, $\C$は通常の圏と同値である. 
+よって, $\infty$圏の定義は, これら両方の特徴を捉える必要がある. 
+つまり、通常の圏と位相空間の両方のようにふるまう数学的対象が必要である. 
+1.1.1節では, 強引にこの問題に取り組んだ. 
+すなわち, 位相的圏を考えることで, 位相空間の理論と通常の圏の理論を直接合わせた. 
+しかし, この問題を考えるときには, 単体的集合の理論を使用することができる. 
+
+単体的集合の理論は, ホモトピー論への組み合わせ論的なアプローチとして考えられた. 
+任意の位相空間$X$に対して, 単体的集合$\Sing(X)$を対応づけることができる. 
+この単体的集合の$n$単体は, 標準$n$単体$|\Delta^n| = \{(x_0,\cdots,x_n) \in [0,1]^{n+1} ~|~ x_0 + \cdots + x_n = 1\}$から$X$への連続写像である. 
+さらに, 位相空間$X$は$\Sing(X)$によって弱ホモトピー同値の違いを除いて定まる. 
+より正確にいうと, 特異単体関手$X \mapsto \Sing(X)$は左随伴を持ち, これは任意の単体的集合$K$に対して幾何学的実現$|K|$を対応させる関手である. 
+任意の位相空間$X$に対して, この随伴の余単位射$|\Sing(X)| \to X$は弱ホモトピー同値である. 
+よって, 弱ホモトピー同値で同一視して位相空間論を考える場合, 単体的集合の理論を使用することができる. 
+
+\begin{definition}[特異単体]
+  $X$を位相空間とする.
+  このとき, 単体的集合$\Sing(X)$を次のように定義し, $X$の特異単体(singular complex)という.
+  \begin{itemize}
+    \item 任意の$n \geq 0$に対して, $\Sing(X)_n := \Hom_{\CGWH}(|\Delta^n|,X)$.
+    \item $\Delta$の任意の射$\alpha : [m] \to [n]$に対して, $\Sing(X)_n \to \Sing(X)_m$は$\alpha$から定まる写像$|\Delta^m| \to |\Delta^n|$の前合成. 
+  \end{itemize} 
+\end{definition}
+
+位相空間の特異単体として表されるような単体的集合は, 次の性質を持つ. 
+
+\begin{definition}[Kan複体] \label{def.1.1.2.1}
+  $K$を単体的集合とする. 
+  任意の$n \geq 2$と$0 \leq i \leq n$に対して, 単体的集合の射$f_0 : \Lambda^n_i \to K$が拡張$f : \Delta^n \to K$を持つとき, $K$をKan複体(Kan complex)という.
+  ここで, $\Lambda^n_i$は$i$番目の角体($i$-th horn)であり, $n$単体$\Delta^n$から内部と$i$番目の頂点と向かい合う面を除いたような単体的部分集合である. 
+\end{definition}
+
+任意の位相空間$X$に対して, 特異単体$\Sing(X)$はKan複体である. 
+これは随伴の図式を考えると, 角体$|\Lambda^n_i|$の単体$|\Delta^n|$のレトラクトであることから従う.
+逆に, 任意のKan複体$K$は空間のような性質をもつ. 
+例えば, $K$からホモトピー群を組み合わせ論的な方法で定義することができる. 
+これは, 位相空間$|K|$のホモトピー群と同型であることもわかる.
+Quillenは特異単体と幾何学的実現がCW複体のホモトピー圏とKan複体の複体の圏の同値を与えることを示した.
+
+単体的集合の定式化は通常の圏論とも深く関係する. 
+任意の圏$\C$に対して, $\C$の脈体と呼ばれる単体的集合$\N(\C)$を定義することができる. 
+
+\begin{definition}[脈体]
+  $\C$を通常の圏とする. 
+  このとき, 単体的集合$\N(\C)$を次のように定義し, $\C$の脈体(nerve)という.
+  \begin{itemize}
+    \item 任意の$n \geq 0$に対して, $\N(\C)_n := \Hom_{\Cat}([n],\C)$.
+    \item $\Delta$の任意の射$\alpha : [m] \to [n]$に対して, $\Sing(X)_n \to \Sing(X)_m$は$\alpha$の前合成. 
+  \end{itemize}
+\end{definition}
+
+各$n$単体を考えると, 単体的集合$\N(\C)$は$\C$の圏としての構造を反映していることは明らかである. 
+より正確に言うと, 圏$\C$は圏同型の違いを除いて, 脈体$\N(\C)$から復元することができる. 
+$\C$の対象は$\N(\C)$の点, つまり$\N(\C)_0$の元である. 
+対象$C_0$から対象$\C_1$の射は$d_1(\phi)=C_0$かつ$d_0(\phi)=C_1$であるような$\N(\C)$の辺$\phi$, つまり$\N(\C)_1$の元である. 
+対象$C$の恒等射は退化する辺$s_0(C)$で与えられる.
+最後に, 図式$C_0 \xrightarrow{\phi} C_1 \xrightarrow{\psi} C_2$が与えられると, 合成$\psi\phi$に対応する$\N(\C)$の辺は$d_2(\sigma)=\phi,d_0(\sigma)=\psi,d_1(\sigma)=\psi\phi$であるような$\N(\C)$の2単体$\sigma$が存在するという事実によって, 一意に特徴づけることができる.
+圏の脈体として表されるような単体的集合は次のように特徴づけることができる. 
+
+\begin{proposition} \label{prop.1.1.2.2}
+  $K$を単体的集合とする. 
+  このとき, 次は同値である. 
+  \begin{enumerate}
+    \item ある小圏$\C$が存在して, 単体的集合の同型$K \cong \N(\C)$が成立する. 
+    \item 任意の$n \geq 2$と$0<i<n$に対して, 単体的集合の射$f_0 : \Lambda^n_i \to K$が一意な拡張$f : \Delta^n \to K$を持つ.
+  \end{enumerate}
+\end{proposition}
+
+\cref{prop.1.1.2.2}の(2)は\cref{def.1.1.2.1}と非常に似ているが, 2つ異なる点がある.
+まず, 拡張条件が$0<i<n$の内部角体$\Lambda^n_i$に対してのみにしか課されていない. 
+一方, 任意の射$\Lambda^n_i \to K$の$\Delta^n$への拡張は一意であることを課している. 
+
+\begin{remark} \label{rem.1.1.2.3}
+  \Cref{prop.1.1.2.2}の条件(2)において, 外部角体$\Lambda^n_0,\Lambda^n_n$まで拡張条件を課していないことは自然である.
+  例えば, 次のように表せる角体$\Lambda^2_2 \to K$を考える. 
+  % https://q.uiver.app/#q=WzAsMyxbMCwxLCJDXzAiXSxbMiwxLCJDXzIiXSxbMSwwLCJDXzEiXSxbMCwxXSxbMiwxXSxbMCwyLCIiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+  \[\begin{tikzcd}
+    & {C_1} \\
+    {C_0} && {C_2}
+    \arrow[from=1-2, to=2-3]
+    \arrow[dashed, from=2-1, to=1-2]
+    \arrow[from=2-1, to=2-3]
+  \end{tikzcd}\]
+  拡張条件を考えると, この図式を可換にするような点線が存在することになる.
+  このようなことは$\C$が亜群でない限り一般には成立しない. ($C_0=C_2$かつ$\id = C_0 \to C_2$の場合を考えるとよい.)
+\end{remark}
+
+単体的集合はとても柔軟な概念である. 
+$K$がKan複体のときは$\infty$亜群のよいモデルとなり, $K$が\cref{prop.1.1.2.2}の条件を満たすときは通常の圏のようにふるまう.
+このことから, 単体的集合のより広いクラスが$\infty$圏のよいモデルとなると考えられるが, 一般の単体的集合に対しては成立しない.
+
+$K$を単体的集合とする.
+$K$が\cref{prop.1.1.2.2}の条件を満たすとき, $K$の点が対象, $K$の辺が射であるような一般化された圏のように思うことができる. 
+2単体$\sigma : \Delta^2 \to K$は次のような図式
+% https://q.uiver.app/#q=WzAsMyxbMCwxLCJYIl0sWzIsMSwiWiJdLFsxLDAsIlkiXSxbMCwxLCJcXHRoZXRhIiwyXSxbMiwxLCJcXHBzaSJdLFswLDIsIlxccGhpIl1d
+\[\begin{tikzcd}
+	& Y \\
+	X && Z
+	\arrow["\psi", from=1-2, to=2-3]
+	\arrow["\phi", from=2-1, to=1-2]
+	\arrow["\theta"', from=2-1, to=2-3]
+\end{tikzcd}\]
+と図式の「可換性」を表すような$\theta$と$\psi\phi$の間の同一視(ホモトピー)のように思うべきである.
+(高次圏論においては, 可換性は条件ではなく, ホモトピー$\theta \simeq \psi\phi$は追加のデータである.)
+そして, 高次元の単体は高次元の図式の可換性のように思いたい. 
+
+残念なことに, 一般の単体的集合$K$に対して, このアナロジーは強すぎる仮定である.
+$K$の1単体を射と思うとして, 問題の本質は合成を定める方法が一般には存在しないことである. 
+$\N(\C)$を例に考えて解決方法を考えよう. 
+射$\theta : X \to Z$は, 上のように表される図式$\sigma : \Delta^2 \to K$が存在するとき, 射$\phi : X \to Y$と$\psi : Y \to Z$の合成である. 
+ここで, 2つの問題を考える必要がある. 
+それは, 求める2単体$\sigma$が存在するとは限らないことと, 存在しても一意であるとは限らないことである. 
+よって, 合成$\theta$の選択が2つ以上あることになる. 
+
+$\sigma$の存在を課すことは, 単体的集合$K$に対する拡張条件で定式化することができる.
+合成可能な射の対$(\phi,\psi)$は単体的集合の射$\Lambda^2_1 \to K$を定める.
+よって, 単体的集合の任意の射$\Lambda^2_1 \to K$が次の図式を可換にするような射$\Delta^2 \to K$に拡張できるという条件で, $\sigma$の存在性は定式化できる. 
+% https://q.uiver.app/#q=WzAsMyxbMCwxLCJcXERlbHRhXjIiXSxbMSwwLCJLIl0sWzAsMCwiXFxMYW1iZGFeMl8xIl0sWzAsMSwiIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzIsMCwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiwxXV0=
+\[\begin{tikzcd}
+	{\Lambda^2_1} & K \\
+	{\Delta^2}
+	\arrow[from=1-1, to=1-2]
+	\arrow[hook, from=1-1, to=2-1]
+	\arrow[dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+
+$\theta$の一意性は別問題である.
+$\theta$が一意に定まることを要求することは不必要であり不自然であることが分かる. 
+このことを理解するために, 位相空間$X$の基本亜群を考える. 
+この圏は対象は$X$の点$x$であり, 点$x$から$y$への射は$p(0)=x, p(1)=y$である連続写像$p : [0,1] \to X$で与えられる. 
+2つの射はその間にホモトピーが存在するとき, 同値であるとみなされる. 
+基本亜群における射の合成は道の合成で与えられる. 
+$p(0)=x, p(1)=q(0)=y, q(1)=z$である道$p,q : [0,1] \to X$に対して, $p$と$q$の合成は$x$と$z$をつなぐような道である. 
+$p$と$q$からこのような道を構成する方法はいくつもある. 
+最も簡単なものは 
+\begin{align*}
+  r(t)
+  = \begin{cases}
+    p(2t) & (0 \leq t \leq 1/2) \\
+    q(2t-1) & (1/2 \leq t \leq 1)
+  \end{cases}
+\end{align*}
+である. 
+しかし, 次のように定義してもよい. 
+\begin{align*}
+  r'(t)
+  = \begin{cases}
+    p(3t) & (0 \leq t \leq 1/3) \\
+    q(\frac{3t-1}{2}) & (1/3 \leq t \leq 1)
+  \end{cases}
+\end{align*}
+道$r$と$r'$はホモトピックなので, どちらを選んでも違いはない.
+
+この状況を2圏論的に考えようとすると, より複雑になる. 
+位相空間$X$の基本2亜群を考えることで, $X$の情報をより多く抜き出すことができる. 
+これは, 対象が$X$の点, 射が点の間の道, 2射が道の間のホモトピーで与えられる2圏である.
+
+この例から分かるように, 高次圏論においては, 2つの射の合成が一意であるかは問うべきではない. 
+基本亜群の例では, 道の合成には多くの選択があったが, これらは全てホモトピックであった. 
+高次圏論でも同様に, 合成とホモトピックな任意の射は合成そのものであると考えられるべきである. 
+このことから, 合成は関数ではなく関係と考えたほうが自然であり, 単体的集合の枠組みでは次のように明瞭に記述することができる. 
+2単体$\sigma : \Delta^2 \to K$は$d_0(\sigma)d_2(\sigma)$が$d_1(\sigma)$とホモトピックであることを保証しているとみなすことができる.
+
+単体的集合$K$にどのような条件を課すと, 高次圏のように思うことができるだろうか. 
+上述の議論に基づくと, \cref{def.1.1.2.1}と同様に, 角体の包含$\Lambda^n_i \hookrightarrow \Delta^n$に何かしらの拡張条件を課すことが自然である. 
+\Cref{rem.1.1.2.3}で見たように, $0<i<n$の内部角体のみに課すことが自然である. 
+
+\begin{definition}[$\infty$圏] \label{def.1.1.2.4}
+  $K$を単体的集合とする. 
+  任意の$n \geq 2$と$0<i<n$に対して, 単体的集合の射$f_0 : \Lambda^n_i \to K$が拡張$f : \Delta^n \to K$を持つとき, $K$を$\infty$圏($\infty$-category)という.
+  % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXExhbWJkYV5uX2kiXSxbMSwwLCJLIl0sWzAsMSwiXFxEZWx0YSJdLFswLDEsImZfMCJdLFswLDIsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzIsMSwiZiIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+  \[\begin{tikzcd}
+    {\Lambda^n_i} & K \\
+    {\Delta^n}
+    \arrow["{f_0}", from=1-1, to=1-2]
+    \arrow[hook, from=1-1, to=2-1]
+    \arrow["f"', dashed, from=2-1, to=1-2]
+  \end{tikzcd}\]
+\end{definition}
+
+\Cref{def.1.1.2.4}はBoardmanとVogtにより初めて定式化された.
+\Cref{def.1.1.2.1}とのアナロジーで, 彼らはこの$\infty$圏を弱Kan複体と呼んだ. 
+\Cref{prop.1.1.2.2}の圏論による特徴づけを強調して, 本稿では$\infty$圏と呼ぶことにする.
+
+\begin{example} \label{eg.1.2.2.5}
+  任意のKan複体は$\infty$圏である. 
+  特に, 任意の位相空間$X$に対して, 特異単体$\Sing(X)$は$\infty$圏である. 
+\end{example}
+
+\begin{example} \label{eg.1.1.2.6}
+  任意の小圏$\C$に対して, 脈体$\N(\C)$は$\infty$圏である. 
+  脈体$\N$は忠実充満なので, 圏$\C$とその脈体$\N(\C)$を同一視することができる. 
+  この意味で, 通常の圏論は$\infty$圏の理論の特別な場合であるとみなすことができる. 
+\end{example}
+
+\cref{def.1.1.2.4}の拡張条件(弱Kan条件)はとても美しく強力な高次圏論につながる.
+この理論はJoyalにより調べられてきた. (Jpyalは\cref{def.1.1.2.4}の条件を満たす単体的集合を擬圏と呼んでいる.)
+この概念は本稿を通じて用いられる. 
+
+\end{document}
