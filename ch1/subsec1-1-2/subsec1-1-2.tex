@@ -10,7 +10,7 @@
 
 \begin{document}
 
-\maketitle
+% \maketitle
 
 \setcounter{chapter}{1}
 \setcounter{section}{1} 
@@ -49,14 +49,12 @@ $\C$のすべての射が可逆であれば, $\C$はある位相空間$X$の基�
 任意の位相空間$X$に対して, この随伴の余単位射$|\Sing(X)| \to X$は弱ホモトピー同値である. 
 よって, 弱ホモトピー同値で同一視して位相空間論を考える場合, 単体的集合の理論を使用することができる. 
 
-\begin{definition}[特異単体]
-  $X$を位相空間とする.
-  このとき, 単体的集合$\Sing(X)$を次のように定義し, $X$の特異単体(singular complex)という.
-  \begin{itemize}
-    \item 任意の$n \geq 0$に対して, $\Sing(X)_n := \Hom_{\CGWH}(|\Delta^n|,X)$.
-    \item $\Delta$の任意の射$\alpha : [m] \to [n]$に対して, $\Sing(X)_n \to \Sing(X)_m$は$\alpha$から定まる写像$|\Delta^m| \to |\Delta^n|$の前合成. 
-  \end{itemize} 
-\end{definition}
+$X$を位相空間とする.
+このとき, 単体的集合$\Sing(X)$を次のように定義し, $X$の特異単体(singular complex)という.
+\begin{itemize}
+  \item 任意の$n \geq 0$に対して, $\Sing(X)_n := \Hom_{\CGWH}(|\Delta^n|,X)$.
+  \item $\Delta$の任意の射$\alpha : [m] \to [n]$に対して, $\Sing(X)_n \to \Sing(X)_m$は$\alpha$から定まる写像$|\Delta^m| \to |\Delta^n|$の前合成. 
+\end{itemize} 
 
 位相空間の特異単体として表されるような単体的集合は, 次の性質を持つ. 
 
@@ -76,14 +74,12 @@ Quillenは特異単体と幾何学的実現がCW複体のホモトピー圏とKa
 単体的集合の定式化は通常の圏論とも深く関係する. 
 任意の圏$\C$に対して, $\C$の脈体と呼ばれる単体的集合$\N(\C)$を定義することができる. 
 
-\begin{definition}[脈体]
-  $\C$を通常の圏とする. 
-  このとき, 単体的集合$\N(\C)$を次のように定義し, $\C$の脈体(nerve)という.
-  \begin{itemize}
-    \item 任意の$n \geq 0$に対して, $\N(\C)_n := \Hom_{\Cat}([n],\C)$.
-    \item $\Delta$の任意の射$\alpha : [m] \to [n]$に対して, $\Sing(X)_n \to \Sing(X)_m$は$\alpha$の前合成. 
-  \end{itemize}
-\end{definition}
+$\C$を通常の圏とする. 
+このとき, 単体的集合$\N(\C)$を次のように定義し, $\C$の脈体(nerve)という.
+\begin{itemize}
+  \item 任意の$n \geq 0$に対して, $\N(\C)_n := \Hom_{\Cat}([n],\C)$.
+  \item $\Delta$の任意の射$\alpha : [m] \to [n]$に対して, $\Sing(X)_n \to \Sing(X)_m$は$\alpha$の前合成. 
+\end{itemize}
 
 各$n$単体を考えると, 単体的集合$\N(\C)$は$\C$の圏としての構造を反映していることは明らかである. 
 より正確に言うと, 圏$\C$は圏同型の違いを除いて, 脈体$\N(\C)$から復元することができる. 
@@ -230,7 +226,7 @@ $p$と$q$からこのような道を構成する方法はいくつもある.
 \end{example}
 
 \cref{def.1.1.2.4}の拡張条件(弱Kan条件)はとても美しく強力な高次圏論につながる.
-この理論はJoyalにより調べられてきた. (Jpyalは\cref{def.1.1.2.4}の条件を満たす単体的集合を擬圏と呼んでいる.)
+この理論はJoyalにより調べられてきた. (Joyalは\cref{def.1.1.2.4}の条件を満たす単体的集合を擬圏と呼んでいる.)
 この概念は本稿を通じて用いられる. 
 
 \end{document}

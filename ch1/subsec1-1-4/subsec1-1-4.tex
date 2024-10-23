@@ -1,0 +1,120 @@
+\RequirePackage{plautopatch}
+\documentclass[uplatex, a4paper, 14Q, dvipdfmx]{jsreport}
+\usepackage{docmute}
+\usepackage{../../mypackage}
+
+\setcounter{secnumdepth}{4}
+\title{1.1.4 単体的圏}
+\author{Keima Akasaka}
+\date{\today}
+
+\begin{document}
+
+% \maketitle
+
+\setcounter{chapter}{1}
+\setcounter{section}{1} 
+\setcounter{subsection}{3}   
+\setcounter{subsubsection}{1}
+
+\subsection{単体的圏}
+
+1.1.2節と1.1.3節では, 高次圏論への基礎として位相的圏と単体的集合という2つの方法を見た.
+これらが等価であることを示すために, 3つ目の基礎づけとして単体的圏を考える.
+
+\begin{definition}[単体的圏] \label{def.1.1.4.1}
+  $\sSet$で豊穣された圏を単体的圏(simplicial category)という. 
+  単体的圏と単体的関手のなす圏を$\Cat_\Delta$と表す. 
+\end{definition}
+
+\begin{remark} \label{rem.1.1.4.2} % \cite[\href{https://kerodon.net/tag/00JQ}{Tag 00JQ}]{kerodon}
+  単体的圏$\C$に対して, 構成$[n] \mapsto \C_n$は関手$\Delta^\myop \to \Cat$を定める. 
+  構成$\C \mapsto ([n] \mapsto \C_n)$は関手$\Cat_\Delta \to \Fun(\Delta^\myop, \Cat)$を定める. 
+  このとき, 次のプルバックの図式を得る. 
+  % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXENhdF9cXERlbHRhIl0sWzAsMSwiXFxTZXQiXSxbMiwwLCJcXEZ1bihcXERlbHRhXlxcbXlvcCxcXENhdCkiXSxbMiwxLCJcXEZ1bihcXERlbHRhXlxcbXlvcCxcXFNldCkiXSxbMCwxLCJcXE9iIiwyXSxbMCwyLCJcXEMgXFxtYXBzdG8gKG4gXFxtYXBzdG8gQ19uKSJdLFsyLDMsIlxcT2IiXSxbMSwzXSxbMCwzLCIiLDAseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XV0=
+  \[\begin{tikzcd}
+    {\Cat_\Delta} && {\Fun(\Delta^\myop,\Cat)} \\
+    \Set && {\Fun(\Delta^\myop,\Set)}
+    \arrow["\Ob"', from=1-1, to=2-1]
+    \arrow["{\C \mapsto (n \mapsto \C_n)}", from=1-1, to=1-3]
+    \arrow["\Ob", from=1-3, to=2-3]
+    \arrow[from=2-1, to=2-3]
+    \arrow["\lrcorner"{anchor=center, pos=0.125, rotate=45}, draw=none, from=1-1, to=2-3]
+  \end{tikzcd}\]
+  ここで, 下の水平線は集合$S$に対して$S$に値をとる定値関手$\Delta^\myop \to \Set$を与える対応である. 
+  つまり, 任意の単体的圏は対象$[n] \mapsto \Ob(\C_n)$のなす台単体的集合が定値であるような$\Cat$における単体的対象とみなすことができる. 
+  特に, 関手$\Cat_\Delta \to \Fun(\Delta^\myop, \Cat)$は忠実充満である.
+\end{remark}
+
+位相的圏と同様に, 単体的圏も高次圏のモデルとみることができる. 
+% 単体的圏$\C$に対して, 単体的集合$\Map_\C(X,Y)$は$\infty$亜群のホモトピー型の情報を持っていると思える(らしい).
+
+\begin{remark} \label{rem.1.1.4.3}
+  $\C$を単体的圏とする. 
+  単体的圏の任意の対象$X,Y$に対して, 単体的集合$\Map_\C(X,Y)$が$\infty$圏のとき, $\C$は$(\infty,2)$圏とみなすことができる. 
+  この本では, ファイブラント単体的圏, つまり単体的集合$\Map_\C(X,Y)$がKan複体であるような単体的圏のみを考える. 
+\end{remark}
+
+$\sSet$と$\CGWH$の間には幾何学的実現$|-| : \sSet \to \CGWH$と特異単体関手$\Sing : \CGWH \to \sSet$が存在し, これらはともに有限直積と交換する. 
+これらを用いて, 単体的圏から位相的圏, 位相的圏から単体的圏をそれぞれ構成することができる. 
+単体的圏$\C$に対して, 位相的圏$|\C|$を次のように定義する. 
+\begin{itemize}
+  \item $|\C|$の対象は$\C$の対象と同じ.
+  \item $|\C|$の任意の対象$X,Y$に対して, $\Map_{|\C|}(X,Y) := |\Map_\C(X,Y)|$.
+  \item $|\C|$における射の合成は$\C$における射の合成に幾何学的実現を適応させて得られる対応.
+\end{itemize}
+
+同様に, 位相的圏の射空間に特異単体を作用させることで単体的圏を得る. 
+位相的圏$\D$に対して, 単体的圏$\Sing\D$を次のように定義する. 
+\begin{itemize}
+  \item $\Sing\D$の対象は$\D$と同じ.
+  \item $\Sing\D$の任意の対象$X,Y$に対して, $\Map_{\Sing\D}(X,Y) := \Sing(\Map_\D(X,Y))$.
+  \item $\Sing\D$における射の合成は$\D$における射の合成に特異単体関手を適応させて得られる対応.
+\end{itemize}
+
+構成$\C \mapsto |\C|$と$\D \mapsto \Sing\D$はそれぞれ関手$|-| : \Cat_\Delta \to \CatTop$と$\Sing : \CatTop \to \Cat_\Delta$を定める. 
+これらの関手は$\Cat_\Delta$と$\CatTop$の間の随伴を定める. 
+\begin{align*}
+  |-| : \Cat_\Delta \rightleftarrows \CatTop : \Sing
+\end{align*}
+
+1.1.3節で見たように, $\H$は$\CGWH$にすべての弱ホモトピー同値を添加した圏とみなせた.
+$\sSet$と$\CGWH$との等価性
+\footnote{
+  $\sSet$上のKan-Quillenモデル構造と$\CGWH$上のQuillenモデル構造がQuillen同値であるという意味である. 
+}
+から, $\H$は$\sSet$にすべての単体的集合の弱ホモトピー同値を添加した圏ともみなせる. 
+よって, $\H$は単体的圏のホモトピー圏ともみなせる. 
+
+$\CGWH$と$\sSet$のホモトピー圏はともに$\H$とみなせるので, 任意の単体的圏$\C$と位相的圏$\D$に対して, 次の自然な同型が存在する. 
+\begin{align*}
+  \h\C \cong \h|\C|, ~~~ \h\D \cong \h\Sing\D
+\end{align*}
+よって, 位相的圏のホモトピー圏と単体的圏のホモトピー圏は同一視できる.
+
+% \begin{definition}[単体的圏のホモトピー圏]
+%   単体的圏$\C$に対して, $\H$豊穣圏$\h\C$を次のように定義し, $\C$のホモトピー圏(homotopy category)という. 
+%   \begin{itemize}
+%     \item $\h\C$の対象は$\C$の対象と同じ 
+%     \item $\h\C$の任意の対象$X,Y$に対して, $\Map_{\h\C}(X,Y) := \theta'(\Map_\C(X,Y))$
+%   \end{itemize}
+% \end{definition}
+
+\begin{definition}[単体的圏の同値]
+  $F : \C \to \D$を単体的関手とする. 
+  誘導される関手$\h F : \h\C \to \h\D$が$\H$豊穣圏として圏同値のとき, $F$を同値(equivalence)という. 
+\end{definition}
+
+単体的圏の関手$\C \to \C'$が同値であることと, 位相的圏の関手$|\C| \to |\C'|$が同値であることは同値である. 
+幾何学的実現と特異単体関手による$\Cat_\Delta$と$\CatTop$の随伴の(余)単位を考えると, 
+\begin{align*}
+  \C \to \Sing|\C|, ~~~ |\Sing\D| \to \D
+\end{align*}
+はそれぞれのホモトピー圏において同型を定める. 
+つまり, 単体的圏$\C$を位相的圏$|\C|$で置き換えても, 位相的圏$\D$を単体的圏$\Sing\D$で置き換えてもよい. 
+この意味で, 位相的圏の理論と単体的圏の理論は(高次圏として)等価である. 
+\footnote{
+  $\Cat_\Delta$上のBergnerモデル構造と$\CatTop$上のBergnerモデル構造がQuillen同値であるという意味である. 
+}
+
+\end{document}

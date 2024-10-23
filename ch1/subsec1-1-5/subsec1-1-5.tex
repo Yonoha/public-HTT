@@ -1,0 +1,283 @@
+\RequirePackage{plautopatch}
+\documentclass[uplatex, a4paper, 14Q, dvipdfmx]{jsreport}
+\usepackage{docmute}
+\usepackage{../../mypackage}
+
+\setcounter{secnumdepth}{4}
+\title{1.1.5 \texorpdfstring{$\infty$}{infty}圏と単体的圏の比較}
+\author{Keima Akasaka}
+\date{\today}
+
+\begin{document}
+
+% \maketitle
+
+\setcounter{chapter}{1}
+\setcounter{section}{1} 
+\setcounter{subsection}{4}   
+\setcounter{subsubsection}{1}
+
+\subsection{\texorpdfstring{$\infty$}{infty}圏と単体的圏の比較}
+
+1.1.4節では, 単体的圏を導入して, 単体的圏の理論が位相的圏の理論と等価であることを示した.
+1.1.5節では, 単体的圏の理論が$\infty$圏の理論と深く関係していることを示す. 
+
+通常の圏$\C$に対して, 通常の脈体$\N(\C)$は
+\begin{align*}
+  \N(\C)_n := \Hom_{\Cat}([n],\C)
+\end{align*}
+により定義された. 
+単体的圏$\C$から単体的集合を定義するとき, 同様の定義では$\C$の単体的構造を用いることができない. 
+よって, 単体的圏の脈体
+\begin{align*}
+  \mathcal{N} : \Cat_{\Delta} \to \sSet
+\end{align*}
+を定義するときには, $[n]$のに「厚みをもたせた」単体的圏$\mathfrak{C}[\Delta^n]$を用いる. 
+
+\begin{definition} \label{def.1.1.5.1}
+  空でない線形順序集合$J$に対して, 単体的圏$\mathfrak{C}[\Delta^J]$を次のように定義する. 
+  \begin{itemize}
+    \item $\mathfrak{C}[\Delta^J]$の対象は$J$の対象と同じ.
+    \item $\mathfrak{C}[\Delta^J]$の任意の対象$i,j$に対して, 
+    \begin{align*}
+      \Map_{\mathfrak{C}[\Delta^J]}(i,j)
+      := \begin{cases}
+        \emptyset & (j < i) \\
+        \N(P_{i,j}) & (i \leq j).
+      \end{cases}
+    \end{align*}
+    ここで, $P_{i,j}$は$i$と$j$を含む任意の集合$[i,j]$のなす集合に包含による順序を入れた線形順序集合である. 
+    \item $i_0 \leq \cdots \leq i_n$のとき, 合成 
+    \begin{align*}
+      \Map_{\mathfrak{C}[\Delta^J]}(i_0,i_1) \times \cdots \times \Map_{\mathfrak{C}[\Delta^J]}(i_{n-1},i_n) \to \Map_{\mathfrak{C}[\Delta^J]}(i_0,i_n)
+    \end{align*}
+    は線形順序集合の写像
+    \begin{align*}
+      P_{i_0,i_1} \times \cdots \times P_{i_{n-1},i_n} \to P_{i_0,i_n} : (I_1, \cdots, I_n) \mapsto I_1 \cup \cdots \cup I_n
+    \end{align*}
+    から定まる対応.
+  \end{itemize}
+\end{definition}
+
+% 通常の圏$[n]$と単体的圏$\mathfrak{C}[\Delta^n]$を比較する. 
+
+\begin{remark} \label{rem.1.1.5.2}
+  $[n]$の対象は集合$\{0,\cdots,n\}$の元である. 
+  $[n]$の任意の対象$i \leq j$に対して, 射$q_{i,j} : i \to j$が一意に存在する.
+  $[n]$の任意の対象$i \leq j \leq k$に対して, $q_{j,k} \circ q_{i,j} = q_{i,k}$を満たす.  
+
+  $\mathfrak{C}[\Delta^n]$の対象は$[n]$の対象と同じである.
+  $\mathfrak{C}[\Delta^n]$の任意の対象$i \leq j$に対して, $\{i,j\} \in P_{i,j}$から定まる点$p_{i,j} \in \Map_{\mathfrak{C}[\Delta^n]}(i,j)$が存在する. 
+  しかし, $i=j$または$j=k$のときを除いて, $p_{j,k} \circ p_{i,j} \neq p_{i,k}$である. 
+  実際, 任意の$i=i_0< \cdots < i_n=j$に対して, 合成$p_{i_n,i_{n-1}} \circ \cdots \circ p_{i_1,i_0}$の集まりは$\Map_{\mathfrak{C}[\Delta^n]}(i,j)$の異なるすべての辺で構成される. 
+  つまり, ホモトピーを除いてでしか一意でない. 
+
+  対象上で恒等的である関手$\mathfrak{C}[\Delta^n] \to [n]$が一意に存在して, これは単体的圏の同値を定める. 
+  よって, $\mathfrak{C}[\Delta^n]$は強結合性($q_{j,k} \circ q_{i,j} = q_{i,k}$)は満たさないが, ホモトピーを除いて結合的な合成を持つ. 
+  この意味で, $\mathfrak{C}[\Delta^n]$は合成のホモトピーの情報を持つような$[n]$のthickeningと思うことができる. 
+\end{remark}
+
+$\mathfrak{C}[\Delta^n]$の部分圏$\mathfrak{C}[\partial \Delta^n]$と$\mathfrak{C}[\Lambda^n_i]$を具体的に書き下す. 
+% この構成は\cref{thrm.2.2.5.1}や\cref{lem.2.2.5.2}で用いる. 
+任意の$n \geq 1$に対して, $\mathfrak{C}[\partial \Delta^n]$は次のように表せる. 
+\begin{itemize}
+  \item $\mathfrak{C}[\partial \Delta^n]$の対象は$\mathfrak{C}[\Delta^n]$と同じ.
+  \item $\mathfrak{C}[\partial \Delta^n]$の任意の対象$j \leq k$に対して, $(j,k)=(0,n)$の場合を除いて
+  \begin{align*}
+    \Hom_{\mathfrak{C}[\partial \Delta^n]}(j,k) = \Hom_{\mathfrak{C}[\Delta^n]}(j,k)
+  \end{align*}
+  である. 
+  $(j,k)=(0,n)$の場合, $\Hom_{\mathfrak{C}[\partial \Delta^n]}(j,k)$は$\Hom_{\mathfrak{C}[\Delta^n]}(j,k) \cong (\Delta^1)^{n-1}$の境界と一致する.
+\end{itemize}
+任意の$n \geq 1$と$0<i<n$に対して, $\mathfrak{C}[\Lambda^n_i]$は次のように表せる. 
+\begin{itemize}
+  \item $\mathfrak{C}[\Lambda^n_i]$の対象は$\mathfrak{C}[\Delta^n]$と同じ.
+  \item $\mathfrak{C}[\Lambda^n_i]$の任意の対象$j \leq k$に対して, $(j,k)=(0,n)$の場合を除いて
+  \begin{align*}
+    \Hom_{\mathfrak{C}[\Lambda^n_i]}(j,k) = \Hom_{\mathfrak{C}[\Delta^n]}(j,k)
+  \end{align*}
+  である. 
+  $(j,k)=(0,n)$の場合, $\Hom_{\mathfrak{C}[\Lambda^n_i]}(j,k)$は$\Hom_{\mathfrak{C}[\Delta^n]}(j,k) \cong (\Delta^1)^{n-1}$の内部と点$i$と向かい合う面を除いたような単体的部分集合と一致する. 
+\end{itemize}
+また, 位相的圏$|\mathfrak{C}[\Delta^n]|$は次のようになる.  
+$|\mathfrak{C}[\Delta^n]|$の対象は集合$[n] = \{0,\cdots,n\}$の元である. 
+任意の$0 \leq i \leq j \leq n$に対して, 位相空間$\Map_{|\mathfrak{C}[\Delta^n]|}(i,j)$は$|\Delta^1|^{j-i-1}$と同相である. 
+$\Map_{|\mathfrak{C}[\Delta^n]|}(i,j)$は$p(i)=p(j)=1$を満たす連続写像$p : \{k \in [n] : i \leq k \leq j\} \to [0,1]$の集合ともみなせる. 
+
+更に, 構成$J \mapsto \mathfrak{C}[\Delta^J]$は関手的である. 
+
+\begin{definition} \label{def.1.1.5.3}
+  線形順序集合の順序を保つ写像$f : J \to J'$に対して, 単体的関手$\mathfrak{C}[f] : \mathfrak{C}[\Delta^J] \to \mathfrak{C}[\Delta^{J'}]$を次のように定義する. 
+  \begin{itemize}
+    \item $\mathfrak{C}[\Delta^J]$の任意の対象$i$に対して, $\mathfrak{C}[f](i) := f(i) \in \mathfrak{C}[\Delta^{J'}]$.
+    \item $J$の任意の対象$i \leq j$に対して, $\Map_{\mathfrak{C}[\Delta^J]}(i,j) \to \Map_{\mathfrak{C}[\Delta^{J'}]}(f(i),f(j))$は$f$が定める写像$P_{i,j} \to P_{f(i),f(j)} : I \mapsto f(I)$の脈体の射$\N(P_{i,j}) \to \N(P_{f(i),f(j)})$
+  \end{itemize}
+\end{definition}
+
+\begin{remark} \label{rem.1.1.5.4}
+  構成$[n] \mapsto \mathfrak{C}[\Delta^n]$は関手$\mathfrak{C}[\Delta^-] : \Delta \to \Cat_\Delta$を定める. 
+\end{remark}
+
+\begin{definition}[単体的脈体,位相的脈体] \label{def.1.1.5.5}
+  単体的圏$\C$に対して, 単体的集合$\mathfrak{N}(\C)$を次のように定義し, $\C$の単体的脈体(simplicial nerve)という. 
+  \begin{itemize}
+    \item 任意の$n \geq 0$に対して, $\mathfrak{N}(\C)_n := \Hom_{\Cat_\Delta}(\mathfrak{C}[\Delta^n],\C)$.
+    \item $\Delta$の任意の射$\alpha : [m] \to [n]$に対して, $\mathfrak{N}(\C)_n \to \mathfrak{N}(\C)_m$は誘導される射$\mathfrak{C}[\Delta^m] \to \mathfrak{C}[\Delta^n]$の前合成. 
+  \end{itemize}
+  位相的圏$\C$に対して, 特異単体$\Sing\C$の単体的脈体$\mathfrak{N}(\Sing\C)$を$\C$の位相的脈体(topological nerve)という. 
+  \footnote{
+    \cite{HTT}では単に$\mathfrak{N}(\C)$と表しているが, 本稿ではこの省略を用いない.
+  }
+\end{definition}
+
+\begin{remark} \label{rem.1.1.5.6}
+  単体的脈体や位相的脈体も単に脈体と呼ぶことが多い. 
+\end{remark}
+
+\begin{remark} \label{warn.1.1.5.7}
+  $\C$を単体的圏とする. 
+  $\C$を単に圏とみなしたとき, 単体的圏$\C$の脈体と圏$\C$の脈体は一致しない. 
+  同様に, $\C$を位相的圏とする. 
+  $\C$を単に圏とみなしたとき, 位相的圏$\C$の脈体と圏$\C$の脈体は一致しない. 
+\end{remark}
+
+\begin{example} \label{eg.1.1.5.8}
+  $\C$を位相的圏とする.
+  $\C$の位相的脈体$\mathfrak{N}(\Sing\C)$の低次元の単体は次のように表せる. 
+  \begin{itemize}
+    \item $\mathfrak{N}(\Sing\C)$の$0$単体は$\C$の対象とみなせる. 
+    \item $\mathfrak{N}(\Sing\C)$の$1$単体は$\C$の射とみなせる.
+    \item $\mathfrak{N}(\Sing\C)$の$2$単体の境界は次のような(可換とは限らない)図式とみなせる. 
+    % https://q.uiver.app/#q=WzAsMyxbMCwxLCJYIl0sWzIsMSwiWiJdLFsxLDAsIlkiXSxbMCwxLCJmX3tYLFp9IiwyXSxbMCwyLCJmX3tYLFl9Il0sWzIsMSwiZl97WSxafSJdXQ==
+    \[\begin{tikzcd}
+      & Y \\
+      X && Z
+      \arrow["{f_{X,Z}}"', from=2-1, to=2-3]
+      \arrow["{f_{X,Y}}", from=2-1, to=1-2]
+      \arrow["{f_{Y,Z}}", from=1-2, to=2-3]
+    \end{tikzcd}\]
+    \item $\mathfrak{N}(\Sing\C)$の$2$単体は$\Map_\C(X,Z)$において$f_{X,Z}$から$f_{Y,Z} \circ f_{X,Y}$への道を与える対応とみなせる. 
+  \end{itemize}
+\end{example}
+
+普遍随伴の一般論より, 単体的脈体は左随伴を持つ. 
+
+\begin{definition}
+  単体的脈体$\mathfrak{N} : \Cat_\Delta \to \sSet$の左随伴$\mathfrak{C}[-] : \sSet \to \Cat_\Delta$と表す. 
+  % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXHNTZXQiXSxbMiwyLCJcXENhdF9cXERlbHRhIl0sWzAsMiwiXFxEZWx0YSJdLFswLDEsIlxcbWF0aGZyYWt7Q30iLDAseyJjdXJ2ZSI6LTF9XSxbMSwwLCJcXE4iLDAseyJjdXJ2ZSI6LTF9XSxbMiwxLCJcXG1hdGhmcmFre0N9W1xcRGVsdGFeLV0iLDJdLFsyLDAsIuOCiCJdLFszLDQsIiIsMCx7ImxldmVsIjoxLCJzdHlsZSI6eyJuYW1lIjoiYWRqdW5jdGlvbiJ9fV1d
+  \[\begin{tikzcd}
+    \sSet \\
+    \\
+    \Delta && {\Cat_\Delta}
+    \arrow[""{name=0, anchor=center, inner sep=0}, "{\mathfrak{C}[-]}", curve={height=-6pt}, from=1-1, to=3-3]
+    \arrow[""{name=1, anchor=center, inner sep=0}, "{\mathfrak{N}}", curve={height=-6pt}, from=3-3, to=1-1]
+    \arrow["{\mathfrak{C}[\Delta^-]}"', from=3-1, to=3-3]
+    \arrow["{よ}", from=3-1, to=1-1]
+    \arrow["\dashv"{anchor=center, rotate=-148}, draw=none, from=0, to=1]
+  \end{tikzcd}\]
+\end{definition}
+
+\begin{proposition} \label{prop.1.1.5.10}
+  $\C$を単体的圏とする. 
+  $\C$の任意の対象$X,Y$に対して$\Map_\C(X,Y)$がKan複体のとき, 単体的脈体$\mathfrak{N}(\C)$は$\infty$圏である.
+\end{proposition}
+
+\begin{proof}
+  任意の$n \geq 1$と$0 < i < n$に対して, 次の拡張が存在することを示せばよい. 
+  % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXExhbWJkYV5uX2kiXSxbMCwxLCJcXERlbHRhXm4iXSxbMSwwLCJcXG1hdGhmcmFre059KFxcQykiXSxbMCwxLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDIsIkYiXSxbMSwyLCIiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+  \[\begin{tikzcd}
+    {\Lambda^n_i} & {\mathfrak{N}(\C)} \\
+    {\Delta^n}
+    \arrow[hook, from=1-1, to=2-1]
+    \arrow["F", from=1-1, to=1-2]
+    \arrow[dashed, from=2-1, to=1-2]
+  \end{tikzcd}\]
+  随伴性より,  次の拡張が存在することを示せばよい.
+  % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXG1hdGhmcmFre0N9W1xcTGFtYmRhXm5faV0iXSxbMCwxLCJcXG1hdGhmcmFre0N9W1xcRGVsdGFebl0iXSxbMSwwLCJcXEMiXSxbMCwxLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDJdLFsxLDIsIiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+  \[\begin{tikzcd}
+    {\mathfrak{C}[\Lambda^n_i]} & \C \\
+    {\mathfrak{C}[\Delta^n]}
+    \arrow[hook, from=1-1, to=2-1]
+    \arrow[from=1-1, to=1-2]
+    \arrow[dashed, from=2-1, to=1-2]
+  \end{tikzcd}\]
+  $\mathfrak{C}[\Lambda^n_i]$の構成から, 次の拡張が存在することを示せばよい.
+  % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXEhvbV97XFxtYXRoZnJha3tDfVtcXExhbWJkYV5uX2ldfSgwLG4pIl0sWzAsMSwiXFxIb21fe1xcbWF0aGZyYWt7Q31bXFxEZWx0YV5uXX0oMCxuKSJdLFsxLDAsIlxcSG9tX1xcQyhGKDApLEYobikpIl0sWzAsMSwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwyXSxbMSwyLCIiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+  \[\begin{tikzcd}
+    {\Map_{\mathfrak{C}[\Lambda^n_i]}(0,n)} & {\Map_\C(F(0),F(n))} \\
+    {\Map_{\mathfrak{C}[\Delta^n]}(0,n)}
+    \arrow[hook, from=1-1, to=2-1]
+    \arrow[from=1-1, to=1-2]
+    \arrow[dashed, from=2-1, to=1-2]
+  \end{tikzcd}\]
+  仮定より, $\Map_\C(F(0),F(n))$はKan複体である. 
+  $\Map_{\mathfrak{C}[\Delta^n]}(0,n)$は$(\Delta^1)^{\{1,\cdots,n-1\}}$と同一視できる. 
+  また, $\Map_{\mathfrak{C}[\Lambda^n_i]}(0,n)$は$(\Delta^1)^{\{1,\cdots,n-1\}}$から内部と点$i$と向かい合う面を除いたような単体的部分集合と同一視できる. 
+  よって, $\Map_{\mathfrak{C}[\Lambda^n_i]}(0,n) \hookrightarrow \Map_{\mathfrak{C}[\Delta^n]}(0,n)$は緩射(弱ホモトピー同値かつモノ射)である. 
+  Kanファイブレーションは緩射に対してRLPを持つので, この図式は拡張を持つ. 
+\end{proof}
+
+\begin{remark} \label{rem.1.1.5.11}
+  \cref{prop.1.1.5.10}の証明から, より強い主張がいえる.
+  $F : \C \to \D$を単体的圏の関手とする. 
+  $\C$の任意の対象$C,C'$に対して, $\Map_\C(C,C') \to \Map_\D(F(C),F(C'))$がKanファイブレーションのとき, $\infty$圏の関手$\mathfrak{N}(F) : \mathfrak{N}(\C) \to \mathfrak{N}(\D)$は内ファイブレーションである.  
+\end{remark}
+
+\begin{corollary} \label{cor.1.1.5.12}
+  $\C$を位相的圏とする. 
+  このとき, 位相的脈体$\mathfrak{N}(\Sing\C)$は$\infty$圏である.
+\end{corollary}
+
+\begin{proof}
+  \cref{prop.1.1.5.10}と, 任意の位相空間の特異単体がKan複体であることから従う.
+\end{proof}
+
+次の命題は2.2.4節と2.2.5節で証明する. 
+
+\begin{theorem} \label{thrm.1.1.5.13}
+  $\C$を位相的圏, $X,Y$を$\C$の任意の対象とする. 
+  このとき, 随伴$(|\mathfrak{C}[-]|, \mathfrak{N}(\Sing))$が定める余単位
+  \begin{align*}
+    u : |\Map_{\mathfrak{C}[\mathfrak{N}(\C)]}(X,Y)| \to \Map_\C(X,Y)
+  \end{align*}
+  は位相空間の弱ホモトピー同値である. 
+\end{theorem}
+
+\cref{thrm.1.1.5.13}より, $\infty$圏の理論と位相的圏の理論が等価であることが分かる. 
+実際, 随伴$(|\mathfrak{C}[-]|, \mathfrak{N}(\Sing))$は互いに圏同値ではないが, ホモトピー同値を定める. 
+これを定式化するために, 単体的集合のホモトピー圏を定義する. 
+
+\begin{definition}[単体的集合のホモトピー圏] \label{def.1.1.5.14}
+  $S$を単体的集合とする. 
+  このとき, 単体的圏$\mathfrak{C}[S]$のホモトピー圏$\h\mathfrak{C}[S]$を$S$のホモトピー圏(homotopy category)といい, $\h S$と表す. 
+
+  $S$を単体的集合とする. 
+  このとき, $S$のホモトピー圏$\h S$は$\H$豊穣圏とみなすことができる. 
+  つまり, $S$の任意の点$x,y$に対して, $\Map_{\h S}(x,y) = [\Map_{\mathfrak{C}[S]}(x,y)]$である. 
+
+  $f : S \to T$を単体的集合の射とする. 
+  誘導される関手$\h f : \h S \to \h T$が$\H$豊穣圏の圏同値のとき, $f$を圏的同値(categorical equivalence)という. 
+\end{definition}
+
+\begin{remark} \label{rem.1.1.5.15}
+  Joyalは圏的同値ではなく, 弱圏的同値(weak categorical equivalence)という言葉を用いている. 
+\end{remark}
+
+\begin{remark} \label{rem.1.1.5.16}
+  同値や弱同値ではなく圏的同値という言葉を用いている理由は, 単体的集合の圏的同値と単体的集合の弱ホモトピー同値と混同しないようにするためである.
+  実際, 単体的集合の圏上のKan-Quillenモデル構造における弱同値は弱ホモトピー同値であるが, Joyalモデル構造では圏的同値である.
+\end{remark}
+
+\begin{remark} \label{rem.1.1.5.17}
+  $f : S \to T$を単体的集合の射とする. 
+  $S \to T$が圏的同値であること, $\mathfrak{C}[S] \to \mathfrak{C}[T]$が単体的圏の同値であること, $|\mathfrak{C}[S]| \to |\mathfrak{C}[T]|$が位相的圏の同値であることはすべて同値である. 
+\end{remark}
+
+\begin{remark} \label{rem.1.1.5.18}
+  随伴$(|\mathfrak{C}[-]|, \mathfrak{N}(\Sing))$は(圏的同値の違いを除いた)単体的集合の理論と(同値の違いを除いた)位相的圏の理論が等価であることを示している. 
+  つまり, 任意の位相的圏$\C$に対して余単位$|\mathfrak{C}[\mathfrak{N}(\C)]| \to \C$は位相的圏の同値であり, 任意の単体的集合$S$に対して, 単位$S \to \mathfrak{N}|\mathfrak{C}[S]|$は単体的集合の圏同値である.
+  余単位$|\mathfrak{C}[\mathfrak{N}(\C)]| \to \C$が位相的圏の同値であることは, \cref{thrm.1.1.5.13}から従う. 
+  後半の主張は前半の主張から従う. 
+\end{remark}
+
+\end{document}
