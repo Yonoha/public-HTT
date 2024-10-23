@@ -1,0 +1,87 @@
+\RequirePackage{plautopatch}
+\documentclass[uplatex, a4paper, 14Q, dvipdfmx]{jsreport}
+\usepackage{docmute}
+\usepackage{../../mypackage}
+
+\setcounter{secnumdepth}{4}
+\title{1.2.5 \texorpdfstring{$\infty$}{infty}亜群と古典的なホモトピー論}
+\author{Keima Akasaka}
+\date{\today}
+
+\begin{document}
+
+% \maketitle
+
+\setcounter{chapter}{1}
+\setcounter{section}{2} 
+\setcounter{subsection}{4}   
+\setcounter{subsubsection}{1}
+
+\subsection{\texorpdfstring{$\infty$}{infty}亜群と古典的なホモトピー論}
+
+通常の圏論における亜群と同様に, 高次圏論における$\infty$亜群を定義する. 
+$\C$を$\infty$圏とする. 
+ホモトピー圏$\h\C$が通常の亜群(つまり, $\C$の任意の射が同値)のとき, $\C$を$\infty$亜群($\infty$-groupoid)という. 
+1.1.1節で, $\infty$亜群の理論と古典的なホモトピー論が等価であることを見た. 
+この考えは次のように定式化することができる.
+
+\begin{proposition} \label{prop.1.2.5.1}
+  $\C$を単体的集合とする. 
+  このとき, 次はすべて同値である. 
+  \begin{enumerate}
+    \item $\C$は$\infty$亜群である. 
+    \item $\C$は任意の$0 \leq i < n$に対して, 包含$\Lambda^n_i \hookrightarrow \Delta^n$は拡張を持つ.
+    \item $\C$は任意の$0 < i \leq n$に対して, 包含$\Lambda^n_i \hookrightarrow \Delta^n$は拡張を持つ.
+    \item $\C$は任意の$0 \leq i \leq n$に対して, 包含$\Lambda^n_i \hookrightarrow \Delta^n$は拡張を持つ.
+    つまり, $\C$はKan複体である. 
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  (1)と(2)の同値性は命題1.2.4.3より従う. 
+  (1)と(3)の同値性は$\C^\myop$において命題1.2.4.3を用いると分かる. 
+  (2)かつ(3)と(4)の同値性は明らかである. 
+\end{proof}
+
+\begin{remark} \label{rem.1.2.5.2}
+  
+\end{remark}
+
+$\infty$亜群から$\infty$圏への包含は, 小$\infty$亜群のなす$\infty$圏から小$\infty$圏のなす$\infty$双圏への埋め込みを定めることを表している. 
+逆に, 任意の$\infty$圏から可逆でない射を捨てることで, $\infty$亜群を得ることができる. 
+
+\begin{proposition} \label{prop.1.2.5.3}
+  $\C$を$\infty$圏, $\C'$を任意の辺が$\C$における同値であるような$\C$の最大部分単体的集合とする. 
+  このとき, $\C'$はKan複体である. 
+  また, 任意のKan複体$K$に対して, $\Hom_{\sSet}(K,\C') \to \Hom_{\sSet}(K,\C)$は全単射である. 
+\end{proposition}
+
+\Cref{prop.1.2.5.3}は次のようにまとめることができる. 
+\Cref{prop.1.2.5.3}で得られるKan複体$\C'$を$\C$に含まれる最大Kan複体(largest Kan complex)という.
+$\C'$は$\C$に含まれる最大Kan複体である. 
+構成$\C \mapsto \C'$は$\infty$圏の$\infty$圏からKan複体の$\infty$圏への関手を定める. 
+この関手はKan複体から$\infty$圏への包含が定める関手の(高次圏的な意味の)右随伴である. 
+また, $\infty$圏の同値$\C \to \D$はKan複体のホモトピー同値$\C' \to \D'$を定める. 
+
+\begin{remark} \label{rem.1.2.5.4}
+  位相的圏や単体的圏においては, この構成は簡単に表すことができる. 
+  例として位相的圏の場合をみる. 
+  $\C$を位相的圏とする. 
+  このとき, 位相的圏$\C'$を次のように定義する. 
+  \begin{itemize}
+    \item $\C'$の対象は$\C$の対象と同じ.
+    \item $\C'$の任意の対象$X,Y$に対して, $\Map_{\C'}(X,Y)$は, $\Map_\C(X,Y)$のすべてのホモトピー同値のなす部分空間(に部分位相をいれた位相空間). 
+  \end{itemize}
+\end{remark}
+
+\begin{remark} \label{rem.1.2.5.5}
+  系2.4.2.5で\cref{prop.1.2.5.3}の構成の相対版を証明する.
+\end{remark}
+
+
+
+\begin{remark} \label{rem.1.2.5.6}
+  
+\end{remark}
+
+\end{document}

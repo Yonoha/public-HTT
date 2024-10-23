@@ -1,0 +1,55 @@
+\RequirePackage{plautopatch}
+\documentclass[uplatex, a4paper, 14Q, dvipdfmx]{jsreport}
+\usepackage{docmute}
+\usepackage{../../mypackage}
+
+\setcounter{secnumdepth}{4}
+\title{1.2.7 高次圏の関手}
+\author{Keima Akasaka}
+\date{\today}
+
+\begin{document}
+
+% \maketitle
+
+\setcounter{chapter}{1}
+\setcounter{section}{2} 
+\setcounter{subsection}{6}   
+\setcounter{subsubsection}{1}
+
+\subsection{高次圏の関手}
+
+高次圏$\C$におけるホモトピー連接図式は関手$\J \to \C$の特別な場合である. 
+通常の圏の集まりが関手を1射, 自然変換を2射とするような双圏をなすように, $\infty$圏の集まりが$\infty$双圏をなすようにしたい. 
+このために, 任意の$\infty$圏$\C,\C'$に対して, $\C$から$\C'$への関手のなす$\infty$圏$\Fun(\C,\C')$を定義する必要がある. 
+
+位相的圏の枠組みにおいて, 適切な$\Fun(\C,\C')$を定義することはとても難しい. 
+$\Fun(\C,\C')$は$\C$から$\C'$への位相的関手のなす圏としたいが, 1.2.6節で見たように, この構成はrigidすぎる. 
+
+$\infty$圏の枠組みにおける関手圏の構成は非常に簡単である. 
+$\C,\D$を$\infty$圏とするとき, $\C$から$\D$への関手は単体的集合の射$\C \to \D$とすればよい. 
+
+\begin{definition}[関手$\infty$圏]
+  $\C,\D$を単体的集合とする. 
+  $\C$から$\D$へのparametrizing mapのなす単体的集合$\Map_{\sSet}(\C,\D)$を$\Fun(\C,\D)$と表す. 
+  つまり, 任意の$n \geq 0$に対して, $\Fun(\C,\D)_n := \Hom_{\sSet}(\C \times \Delta^n, \D)$である.  
+
+  この定義を$\D$が$\infty$圏の場合のみに用いて, $\Fun(\C,\D)$を$\C$から$\D$への関手$\infty$圏($\infty$-category of functors)という. 
+  $\Fun(\C,\D)$における射を関手の自然変換(natural transformation)といい, $\Fun(\C,\D)$における同値を自然同値(natural equivalence)という. 
+\end{definition}
+
+次の命題は2.2.5節で証明する.
+
+\begin{proposition} \label{prop.1.2.7.3}
+  $K$を単体的集合とする. 
+  このとき, 次が成立する. 
+  \begin{enumerate}
+    \item 任意の$\infty$圏$\C$に対して, 単体的集合$\Fun(K,\C)$は$\infty$圏である.
+    \item $\C \to \D$を$\infty$圏の圏同値とする. 
+    このとき, 誘導される射$\Fun(K,\C) \to \Fun(K,\D)$は圏同値である. 
+    \item $\C$を$\infty$圏, $K \to K'$を単体的集合の圏同値とする. 
+    このとき, 誘導される射$\Fun(K',\C) \to \Fun(K,\C)$は圏同値である. 
+  \end{enumerate}
+\end{proposition}
+
+\end{document}

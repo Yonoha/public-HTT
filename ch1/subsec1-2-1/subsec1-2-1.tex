@@ -1,0 +1,43 @@
+\RequirePackage{plautopatch}
+\documentclass[uplatex, a4paper, 14Q, dvipdfmx]{jsreport}
+\usepackage{docmute}
+\usepackage{../../mypackage}
+
+\setcounter{secnumdepth}{4}
+\title{1.2.1 反対\texorpdfstring{$\infty$}{infty}圏}
+\author{Keima Akasaka}
+\date{\today}
+
+\begin{document}
+
+% \maketitle
+
+\setcounter{chapter}{1}
+\setcounter{section}{2} 
+\setcounter{subsection}{0}   
+\setcounter{subsubsection}{1}
+
+\subsection{反対\texorpdfstring{$\infty$}{infty}圏}
+
+通常の圏$\C$に対して, 反対圏$\C^\myop$が定義される. 
+この定義は位相的圏や単体的圏に対しても一般化できる. 
+$\infty$圏の枠組みに一般化するためには, いくつか準備が必要である. 
+より一般に, 単体的集合に対して, 反対単体的集合を定義する. 
+
+単体的集合$S$に対して, 単体的集合$S^\myop$を次のように定義し, $S$の反対(opposite)という. 
+\begin{itemize}
+  \item 任意の$n \geq 0$に対して, $S^\myop_n := S_n$
+  \item 任意の$n \geq 0$と$0 \leq i \leq n$に対して, 
+  \begin{align*}
+    & d_i : S^\myop_n \to S^\myop_{n-1} := d_{n-i} : S_n \to S_{n-1} \\
+    & s_i : S^\myop_n \to S^\myop_{n+1} := s_{n-i} : S_n \to S_{n+1}
+  \end{align*}
+\end{itemize}
+
+$S$を単体的集合とする. 
+このとき, $S$が$\infty$圏であることと, $S^\myop$が$\infty$圏であることは同値である. 
+任意の$0<i<n$に対して, $S$が包含$\Lambda^n_i \hookrightarrow \Delta^n$に対してRLPを持つことと, $S^{\myop}$が包含$\Lambda^n_{n-i} \hookrightarrow \Delta^n$に対してRLPを持つことは同値である. 
+
+本稿で登場するほとんど全ての概念は双対的であり, 高次圏の枠組みにおいても双対命題が成立する. 
+
+\end{document}
