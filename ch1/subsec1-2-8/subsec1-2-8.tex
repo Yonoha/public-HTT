@@ -1,0 +1,120 @@
+\RequirePackage{plautopatch}
+\documentclass[uplatex, a4paper, 14Q, dvipdfmx]{jsreport}
+\usepackage{docmute}
+\usepackage{../../mypackage}
+
+\setcounter{secnumdepth}{4}
+\title{1.2.8 \texorpdfstring{$\infty$}{infty}圏のジョイン}
+\author{Keima Akasaka}
+\date{\today}
+
+\begin{document}
+
+% \maketitle
+
+\setcounter{chapter}{1}
+\setcounter{section}{2} 
+\setcounter{subsection}{7}   
+\setcounter{subsubsection}{1}
+
+\subsection{\texorpdfstring{$\infty$}{infty}圏のジョイン}
+
+通常の圏論におけるジョインの構成は図式圏や極限, 余極限を議論するときに有用である. 
+この節では, ジョインの構成を$\infty$圏の枠組みに一般化する.
+まず, 通常の圏のジョインを復習する. 
+
+通常の圏$\C,\C'$に対して, 圏$\C \star \C'$を次のように定義し, $\C$と$\C'$のジョイン(join)という.
+\begin{itemize}
+  \item $\C \star \C'$の対象は$\C$の対象と$\C'$の直和, つまり$\Ob(\C \star \C') := \Ob(\C) \coprod \Ob(\C')$
+  \item $\C \star \C'$の任意の対象$X,Y$に対して, 
+  \begin{align*}
+    \Hom_{\C \star \C'}(X,Y) = 
+    \begin{cases}
+      \Hom_\C(X,Y)    & (X,Y \in \C) \\
+      \Hom_{\C'}(X,Y) & (X,Y \in \C') \\
+      \emptyset       & (X \in \C', Y \in \C) \\
+      \{\ast\}        & (X \in \C, Y \in \C')
+    \end{cases}
+  \end{align*}
+\end{itemize}
+圏のジョインは対称的ではない. 
+つまり, 通常の圏$\C,\C'$に対して, $\C \star \C'$と$\C' \star \C$は一般には一致しない. 
+
+\begin{definition}[単体的集合のジョイン] \label{def.1.2.8.1}
+  を単体的集合$S,S'$に対して, 単体的集合$S \star S'$を次のように定義し, $S$と$S'$のジョイン(join)という. 
+  \begin{align*}
+    % (S \star S')_n := S_n \subset S'_n \bigcup_{i+j=n-1} S_i \times S'_j
+    % (S \star S')_n := \coprod_{\substack{[J] = [I] \star [I'] \\ I , I' \in \Delta}} X_I \times X_{I'}
+    (S \star S')_n := S_n \coprod \qty(\coprod_{\substack{i+j=n-1 \\ i,j \geq 0}} S_i \star S'_j) \coprod S'_n
+  \end{align*}
+  % $I$や$I'$が空集合のときは$S(\emptyset)=S(\emptyset) = \ast$と定める.
+\end{definition}
+
+% ジョインを与える対応は$\sSet$上のモノイダル構造を与える. (A.1.3を参照.)
+% ジョインを与える操作の恒等射は空単体的集合$\emptyset = \Delta^{-1}$で与えられる. 
+
+\begin{remark} \label{rem.1.2.8.2}
+  構成$(S,S') \mapsto S \star S'$は関手$- \star ? : \sSet \times \sSet \to \sSet$を定める. 
+  任意の単体的集合$S$に対して, 関手$- \star S, S \star ? : \sSet \to (\sSet)_{S/}$は余極限と交換する. 
+  \footnote{
+    任意の単体的集合$S$に対して, 関手$- \star S, S \star ? : \sSet \to \sSet$は余極限と交換しない. 
+    例えば, $S \star \emptyset \cong \emptyset \star S \cong S$であるが, $S$が$\sSet$における始対象とは限らない. 
+    一方, $(\sSet)_{/S}$の対象とみなすと, $\Id_S : S \to S$は$(\sSet)_{S/}$における始対象である. 
+  }
+  また, 任意の$i,j \geq 0$に対して, 単体的集合の自然な同型$\phi_{i,j} : \Delta^{i-1} \star \Delta^{j-1} \cong \Delta^{i+j-1}$が存在する. 
+  よって, ジョイン$\star$は同型$\phi_{i,j}$によって本質的には決定される. 
+
+  圏のジョインの脈体は圏の脈体のジョインで表される. 
+  よって, $\infty$圏論におけるジョインは通常の圏論におけるジョインの一般化とみなせる:
+  $\C,\C'$を圏とする. 
+  このとき, 自然な同型$\N(\C \star \C') \cong \N(\C) \star \N(\C')$が存在する.
+  これは, 任意の$n \geq 0$に対して, 次の同型が存在することから従う. 
+  \begin{align*}
+    \N(\C) \star \N(\C')
+    & \cong \N(\C)_n \sqcup \qty(\coprod_{i+j=n-1} \N(\C)_i \times \N(\D)_j) \sqcup \N(\D)_n \\
+    & \cong \Hom_{\Cat}([n],\C) \sqcup \qty(\coprod_{i+j=n-1} \Hom_{\Cat}([i],\C) \times \Hom_{\Cat}([j],n)) \sqcup \Hom_{\Cat}([n],\D) \\
+    & \cong \N(\C \star \C')_n
+  \end{align*}
+
+  関手$- \star ? : \sSet \times \sSet \to \sSet$は$\mathfrak{C}[-] : \sSet \to \Cat_\Delta$と交換しない.
+  しかし, 単体的圏$\mathfrak{C}[S \star S']$は$\mathfrak{C}[S]$と$\mathfrak{C}[S']$を充満部分圏として含み, $\mathfrak{C}[S \star S']$において$\mathfrak{C}[S']$の対象から$\mathfrak{C}[S]$への対象への射は存在しない. 
+  よって, 射$\phi : \mathfrak{C}[S \star S'] \to \mathfrak{C}[S] \star \mathfrak{C}[S']$が一意に存在して, $\mathfrak{C}[S]$と$\mathfrak{C}[S']$へのそれぞれへの制限は恒等関手となる. 
+  系.4.2.1.4で, この射が単体的圏の同値であることを見る. 
+  つまり, $\phi$は同型ではないが同値ではある. 
+\end{remark}
+
+$\infty$圏のジョインはまた$\infty$圏である.
+
+\begin{proposition} \label{prop.1.2.8.3}
+  $S,S'$を$\infty$圏とする. 
+  このとき, 単体的集合$S \star S'$は$\infty$圏である.
+\end{proposition}
+
+\begin{proof}
+  $0 < i < n$として, 射$p : \Lambda^n_i \to S \star S'$をとる. 
+  $p(\Lambda^n_i) \subset S$または$p(\Lambda^n_i) \subset S'$のとき, $S$と$S'$が$\infty$圏であることから, $p$の拡張は存在する. 
+
+  $p(\{0,\cdots,j\}) \subset S$かつ$p(\{j+1,\cdots,n\}) \subset S'$とする. 
+  $p$を制限することにより, 次の可換図式が存在する. 
+  % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXERlbHRhXntcXHswLFxcY2RvdHMsalxcfX0iXSxbMSwwLCJTIl0sWzAsMSwiXFxMYW1iZGFebl9pIl0sWzIsMCwiXFxEZWx0YV57XFx7aisxLFxcY2RvdHMsblxcfX0iXSxbMiwxLCJcXExhbWJkYV5uX2kiXSxbMywwLCJTJyJdLFswLDEsIlxcc2lnbWEiXSxbMCwyXSxbMiwxXSxbMyw0XSxbMyw1LCJcXHNpZ21hJyJdLFs0LDVdXQ==
+  \[\begin{tikzcd}
+    {\Delta^{\{0,\cdots,j\}}} & S & {\Delta^{\{j+1,\cdots,n\}}} & {S'} \\
+    {\Lambda^n_i} && {\Lambda^n_i}
+    \arrow["\sigma", from=1-1, to=1-2]
+    \arrow[from=1-1, to=2-1]
+    \arrow["{\sigma'}", from=1-3, to=1-4]
+    \arrow[from=1-3, to=2-3]
+    \arrow[from=2-1, to=1-2]
+    \arrow[from=2-3, to=1-4]
+  \end{tikzcd}\]
+  このとき, $\sigma \star \sigma' : \Delta^n \to S \star S'$が定まり, これは$p$の拡張である.
+\end{proof}
+
+\begin{notation}[左錐と右錐] \label{nota.1.2.8.4}
+  $S$を単体的集合とする. 
+  このとき, 単体的集合$\Delta^0 \star S$を$S$の左錐(left cone)といい, $S^\triangleleft$と表す.
+  双対的に, 単体的集合$S \star \Delta^0$を$S$の右錐(right cone)といい, $S^\triangleright$と表す. 
+  $S^\triangleleft, S^\triangleright$において, $\Delta^0$に属する点を錐点(cone point)という. 
+\end{notation}
+
+\end{document}

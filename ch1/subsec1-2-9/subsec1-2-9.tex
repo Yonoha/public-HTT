@@ -1,0 +1,116 @@
+\RequirePackage{plautopatch}
+\documentclass[uplatex, a4paper, 14Q, dvipdfmx]{jsreport}
+\usepackage{docmute}
+\usepackage{../../mypackage}
+
+\setcounter{secnumdepth}{4}
+\title{1.2.9 オーバー圏とアンダー圏}
+\author{Keima Akasaka}
+\date{\today}
+
+\begin{document}
+
+% \maketitle
+
+\setcounter{chapter}{1}
+\setcounter{section}{2} 
+\setcounter{subsection}{8}   
+\setcounter{subsubsection}{1}
+
+\subsection{オーバー圏とアンダー圏}
+
+通常の圏$\C$と$\C$の対象$X$に対して, $X$に関するオーバー圏$\C_{/X}$が定義される. 
+オーバー圏は次のように特徴づけられる:
+$\C$の対象$X$を関手$x : [0] \to \C : 0 \mapsto X$と同一視する. 
+このとき, $X$に関するオーバー圏$\C_{/X}$は次のような普遍性を持つ:
+任意の圏$\C'$に対して, 次の同型が存在する. 
+\begin{align*}
+  \Hom_{\Cat}(\C',\C_{/X}) \cong \Hom_{x}(\C' \star [0],\C)
+\end{align*}
+ここで, 右辺は関手$F : \C' \star [0] \to \C$であって, $F|_{[0]} = x$を満たすようなものの集まりである. 
+
+この節の目標は, このようなオーバー圏の構成を$\infty$圏の枠組みに一般化することである. 
+まずは, 位相的圏の枠組みで考える.
+この場合, オーバー圏の定義として, 次のようなものが自然に考えられる.
+
+\begin{remark} \label{rem.1.2.9.1}
+  $\C$を位相的圏, $X$を$\C$の対象とする. 
+  このとき, 位相的圏$\C_{/X}$が通常の圏と同様に考えられる. 
+  ここで, 射空間$\Hom_{\C_{/X}}(Y,Z)$は$\Map_{\C}(X,Y)$の部分空間として定める. 
+  
+  しかし, この定義は高次圏の視点から見ると正しいものではない. 
+  例えば, $\C_{/X}$における次の図式の可換性は, ホモトピーの違いを除いて定まるべきである. 
+  % https://q.uiver.app/#q=WzAsMyxbMCwwLCJZIl0sWzIsMCwiWiJdLFsxLDEsIlgiXSxbMCwxXSxbMCwyXSxbMSwyXV0=
+  \[\begin{tikzcd}
+    Y && Z \\
+    & X
+    \arrow[from=1-1, to=1-3]
+    \arrow[from=1-1, to=2-2]
+    \arrow[from=1-3, to=2-2]
+  \end{tikzcd}\]
+  しかし, この定義が有用な場面もある(詳しくは補題.6.1.2.13を参照).
+\end{remark}
+
+Joyalは$\infty$圏の枠組みにおいて, オーバー圏を非常に明快に定義した. 
+この構成は本稿を通して非常に重要になる.
+
+\begin{proposition} \label{prop.1.2.9.2}
+  $p : X \to S$を単体的集合の射とする. 
+  このとき, 任意の単体的集合$K$に対して, 次の同型が存在する. 
+  \begin{align*}
+    \Hom_{\sSet}(K,S_{/p}) \cong \Hom_{p}(X \star K,S)
+  \end{align*}
+  ここで, 右辺は関手$F : X \star K \to S$であって, $F|_{K} = p$を満たすものの集まりである. 
+  また, 単体的集合$S_{/ p}$は次のように定義される. 
+  \begin{itemize}
+    \item 任意の$n \geq 0$に対して, $(S_{/ p})_n := \{\overline{p} : \Delta^n \star X \to S ~|~ \overline{p}|_{X} = p\}$
+    \item $\Delta^n$の任意の射$\alpha : [m] \to [n]$に対して, $S_{/ p}(\alpha) : (S_{/ p})_n \to (S_{/ p})_m$は次の対応. 
+    \begin{align*}
+      (\Delta^n \star X \xrightarrow{\overline{p}} S) \mapsto (\Delta^m \star X \xrightarrow{\alpha \star \id_X} \Delta^n \star X \xrightarrow{\overline{p}} S)
+    \end{align*}
+  \end{itemize}
+\end{proposition}
+
+\begin{proof}
+  $X=\Delta^n$の場合を示せばよいが, これは明らかに成立する. 
+\end{proof}
+
+$p : X \to S$を単体的集合の射とする. 
+$S$が$\infty$圏のとき, $S_{/ p}$を$S$のオーバー圏(over category)または$p$上の$S$の対象の$\infty$圏($\infty$-category of objects of $S$ over $p$)という.
+$\infty$圏に対してオーバー圏をとる操作はよくふるまう. 
+証明は2.1.2節と2.4.5節で行う.
+
+\begin{proposition} \label{prop.1.2.9.3}
+  $\C$を$\infty$圏, $p : K \to \C$を単体的集合の射とする. 
+  このとき, $\C_{/p}$は$\infty$圏である.  
+  更に, $q : \C \to \C'$を$\infty$圏の圏同値とする. 
+  このとき, 誘導される射$\C_{/p} \to \C_{/qp}$は$\infty$圏の圏同値である. 
+\end{proposition}
+
+また, 構成$(X \xrightarrow{p} S) \mapsto S_{/ p}$は関手$(\sSet)_{X /} \to \sSet$を定める.
+
+\begin{remark} \label{rem.1.2.9.4}
+  $\C$を$\infty$圏, $p : \Delta^n \to \C$を$\C$の$n$単体$\sigma$とする. 
+  このとき, $\C_{/p}$を$\C_{\sigma}$と表す. 
+  特に, $0$単体$p : \Delta^0 \to \C : 0 \mapsto X$に対して, $\C_{\sigma}$を$\C_{/X}$と表す. 
+\end{remark}
+
+\begin{remark} \label{rem.1.2.9.5}
+  オーバー圏の双対として, アンダー圏が考えられる. 
+  $p : X \to S$を単体的集合の射とする. 
+  \Cref{prop.1.2.9.2}において, $X \times \Delta^n \to S$と定義して定める単体的集合$S_{p/}$を$S$のコスライス(coslice)という. 
+  特に, $S$が$\infty$圏のとき, $S_{/p}$を$S$のアンダー圏(under category)という. 
+  アンダー圏に対しても, \cref{rem.1.2.9.4}と同様の記法を用いる. 
+\end{remark}
+
+\begin{remark} \label{rem.1.2.9.6}
+  圏のスライスの脈体は圏の脈体のスライスで表せる. 
+よって, $\infty$圏論におけるスライスは通常の圏論におけるスライスの一般化とみなせる. 
+  $F : \J \to \C$を関手, $\Delta : \C \to \C^\J$を対角関手とする. 
+  $F$を関手$[0] \to \C^\J$とみなす. 
+  このとき, 同型$\N(\C)_{/F} \cong \N(\Delta \downarrow F)$が存在する. 
+  特に, $\C$の任意の対象$X$に対して, 同型$\N(\C)_{/X} \cong \N(\C_{/X})$が存在する. 
+\end{remark}
+
+
+\end{document}

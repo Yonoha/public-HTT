@@ -1,0 +1,89 @@
+\RequirePackage{plautopatch}
+\documentclass[uplatex, a4paper, 14Q, dvipdfmx]{jsreport}
+\usepackage{docmute}
+\usepackage{../../mypackage}
+
+\setcounter{secnumdepth}{4}
+\title{1.2.11 \texorpdfstring{$\infty$}{infty}圏の部分圏}
+\author{Keima Akasaka}
+\date{\today}
+
+\begin{document}
+
+% \maketitle
+
+\setcounter{chapter}{1}
+\setcounter{section}{2} 
+\setcounter{subsection}{10}   
+\setcounter{subsubsection}{1}
+
+\subsection{\texorpdfstring{$\infty$}{infty}圏の部分圏}
+
+% https://math.stackexchange.com/questions/1489079/definition-of-the-notion-of-a-subcategory-of-an-infty-category?rq=1
+通常の圏論と同様に, 高次圏における部分圏を定義する. 
+$\C$を$\infty$圏, $\h\C$を$\C$のホモトピー圏, $(\h\C)'$を$\h\C$の部分圏とする. 
+このとき, 次のプルバックで定義される$\C'$を$(\h\C)'$で貼られる$\C$の部分圏(subcategory)という. 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXEMnIl0sWzEsMCwiXFxDIl0sWzAsMSwiXFxOKChcXGhcXEMpJykiXSxbMSwxLCJcXE4oXFxoXFxDKSJdLFswLDFdLFswLDIsIiIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxLDNdLFsyLDNdLFswLDMsIiIsMSx7InN0eWxlIjp7Im5hbWUiOiJjb3JuZXIifX1dXQ==
+\[\begin{tikzcd}
+  {\C'} & \C \\
+  {\N((\h\C)')} & {\N(\h\C)}
+  \arrow[from=1-1, to=1-2]
+  \arrow[dashed, from=1-1, to=2-1]
+  \arrow[from=1-2, to=2-2]
+  \arrow[from=2-1, to=2-2]
+  \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+\end{tikzcd}\]
+
+\begin{remark} \label{rem.1.2.11.1}
+  部分$\infty$圏ではなく, 部分圏という用語を用いていることに注意. 
+  これは任意の部分圏がある圏の脈体で表せるという意味ではない (これは偽である). 
+\end{remark}
+
+$\C$を$\infty$圏, $\h\C$を$\C$のホモトピー圏とする. 
+$(\h\C)'$が$\h\C$の充満部分圏のとき, $\C'$を$\C$の充満部分圏(full subcategory)という. 
+\footnote{
+  $\C'$が$\C$の充満部分圏のとき, $\C'$は$\C'$に属する$\C$の対象のなす集合$\C'_0$より定まる. 
+  このことから, $\C'$を$\C'_0$で貼られる$\C$の部分圏ということもある. 
+}
+$\C$を$\infty$圏, $\C'$を$\C$の部分圏とする. 
+$\infty$圏の定義より, 包含$C' \hookrightarrow \C$は忠実充満である. 
+
+$\infty$圏の部分圏は内ファイブレーション(2章を参照)を用いて表すことができる.
+
+\begin{lemma} \label{prop.subcategory_equal_inner_fibration}
+  $\C$を$\infty$圏, $\C'$を$\C$の単体的部分集合とする. 
+  このとき, 次は全て同値である. 
+  \begin{enumerate}
+    \item $\C'$は$\C$の部分圏である. 
+    \item 包含$\C' \hookrightarrow \C$は内ファイブレーションである. 
+  \end{enumerate}
+  特に, $\C'$は$\infty$圏である. 
+\end{lemma}
+
+% \begin{example} \label{eg.subcategory_of_nerve}
+%   $\C$を通常の圏, $\C'$を$\C$の通常の部分圏とする. 
+%   包含$\N(\C') \hookrightarrow \N(\C)$は内ファイブレーションなので, $\N(\C')$は$\N(\C)$の部分圏である. 
+% \end{example}
+
+% \begin{remark} \label{rem.pullback_of_subcategory}
+%   $F : \C \to \D$を$\infty$圏の関手, $\D'$を$\D$の部分圏とする. 
+%   内ファイブレーションはプルバックで閉じるので, 逆像$F^{-1}(\D')$は$\C$の部分圏である. 
+% \end{remark}
+
+% $\N(\C)$の任意の部分圏がこのように表されることを示す. 
+% つまり, \cref{def.subcategory}の部分圏は通常の部分圏$の\infty$圏の枠組みにおける一般化と思える.
+
+% \begin{proposition}
+%   $\C$を$\infty$圏, $\h\C$を$\C$のホモトピー圏とする. 
+%   自然な射$F : \C \to \N(\h\C)$に対して, 構成$(\D \subset \h\C) \mapsto (F^{-1}(\N\D) \subset \C)$は, $\h\C$の通常の部分圏と$\C$の部分圏の間の全単射を定める. 
+% \end{proposition}
+
+% \begin{proof}
+%   $\D$を$\h\C$の部分圏とする. 
+%   \cref{eg.subcategory_of_nerve}より, $\N\D$は$\N(\h\C)$の部分圏である. 
+%   \cref{rem.pullback_of_subcategory}より, $F^{-1}(\N\D)$は$\C$の部分圏である.
+%   $F : \C \to \N(\h\C)$は単体的集合のepi射なので, $\D$は$F^{-1}(\N\D)$から一意に定まる. 
+%   (途中)
+% \end{proof}
+
+\end{document}

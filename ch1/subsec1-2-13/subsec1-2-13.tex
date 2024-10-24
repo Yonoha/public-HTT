@@ -1,0 +1,105 @@
+\RequirePackage{plautopatch}
+\documentclass[uplatex, a4paper, 14Q, dvipdfmx]{jsreport}
+\usepackage{docmute}
+\usepackage{../../mypackage}
+
+\setcounter{secnumdepth}{4}
+\title{1.2.13 極限と余極限}
+\author{Keima Akasaka}
+\date{\today}
+
+\begin{document}
+
+% \maketitle
+
+\setcounter{chapter}{1}
+\setcounter{section}{2} 
+\setcounter{subsection}{12}   
+\setcounter{subsubsection}{1}
+
+\subsection{極限と余極限}
+
+ホモトピー可換とホモトピー連接の違いから, 高次圏$\C$における(余)極限が$\C$のホモトピー圏$\h\C$における(余)極限と一致しないことがある. 
+更に, $\h\C$において(余)極限が存在するとも限らない. 
+通常の圏における(余)極限と区別するために, $\C$における(余)極限をホモトピー(余)極限ということもある. 
+
+ホモトピー(余)極限は位相的圏において定義できるが, この定義はとても複雑である. 
+この節では, A.2.8節で議論されている一般のホモトピー(余)極限を, 特別な場合に限定して復習する.
+
+\begin{example} \label{eg.1.2.13.1}
+  $\C$を位相的圏, $\{X_\alpha\}$を$\C$の対象の族とする. 
+  $\C$の対象$X = \prod_{\alpha}X_\alpha$と射$f_\alpha : X \to X_\alpha$が, $\C$の任意の対象$Y$に対して, 弱ホモトピー同値
+  \begin{align*}
+    \Map_{\C}(Y,X) \to \prod_{\alpha} \Map_{\C}(Y,X_\alpha)
+  \end{align*}
+  を定めるとき, $X$をホモトピー直積(homotopy product)という. 
+
+  $\pi_0$は直積を保つので, 次の同型が成立する.
+  \begin{align*}
+    \Hom_{\h\C}(Y,X) \cong \prod_{\alpha} \Hom_{\h\C}(Y,X_\alpha)
+  \end{align*}
+  よって, $\C$におけるホモトピー極限は$\h\C$における極限を定める. 
+  特に, 対象$X$は$\h\C$において自然な同型の違いを除いて一意に定まる. 
+
+  添字集合が空のとき, $\Map_{\C}(Y,X)$は弱可縮になるので, $\C$のホモトピー直積は終対象の定義と一致する. 
+\end{example}
+
+\begin{remark} \label{rem.1.2.13.2}
+  省略. 
+\end{remark}
+
+\begin{remark} \label{rem.1.2.13.3}
+  省略. 
+\end{remark}
+
+$\infty$圏の枠組みにおいて, (余)極限は簡単に定義することができる.
+
+\begin{definition}[(余)極限] \label{def.1.2.13.4}
+  $\C$を$\infty$圏, $p : K \to \C$を単体的集合の射とする. 
+  $\C_{p/}$の始対象を$p$の余極限(colimit)という. 
+  双対的に, $\C_{/p}$の終対象を$p$の極限(limit)という. 
+\end{definition}
+
+\begin{remark} \label{rem.1.2.13.5}
+  \cref{def.1.2.13.4}から, 図式$p : K \to \C$の余極限は$\C_{p/}$の対象である. 
+  \cref{prop.1.2.9.2}から, この対象を$\overline{p} : K^\triangleright \to \C$と同一視する. 
+  一般に, 単体的集合の射$\overline{p} : K^\triangleright \to \C$が$p=\overline{p}|_{K}$の余極限であるとき, $\overline{p}$を$p$の余極限図式(colimit diagram)という. 
+  また, $K^\triangleright$の錐点を$\infty$と表すとき, $\overline{p}(\infty)$を$p$の余極限ということもある. 
+\end{remark}
+
+図式$p : K \to \C$に対して, $p$の余極限を($\C_{p/}$の対象として見るか$\C$の対象と見るかにかかわらず,) $\colim(p)$と表す.
+同様に, $p$の極限を($\C_{/p}$の対象として見るか$\C$の対象と見るかにかかわらず,) $\lim(p)$と表す.
+ここで, $\colim(p)$は$p$から一意に定まらないにもかかわらず, この記法を用いていることに注意する必要がある.
+通常の圏論において, 図式の(余)極限が自然な同型の違いを除いて一意にしか定まらないことと同様に, $\infty$圏の枠組みにおいても似たようなことが起きる. 
+\cref{prop.1.2.12.9}から, $p$の(余)極限は(空でなければ)可縮なKan複体である. 
+つまり, (余)極限は可縮な空間の違いを除いて定まる. 
+
+\begin{remark} \label{rem.1.2.13.6}
+  4.2.4節で, \cref{def.1.2.13.4}が古典的なホモトピー(余)極限の定義と整合的であることをみる. 
+\end{remark}
+
+\begin{remark} \label{rem.1.2.13.7}
+  $\C$を$\infty$圏, $\C'$を$\C$の充満部分圏, $p : K \to \C'$を単体的集合の射とする. 
+  このとき, $\C'_{p/} = \C' \times_{\C} \C_{p/}$である. 
+  $\C$において$p$の余極限が存在して, $\C'$に属するとする. 
+  このとき, この対象は$\C'$における余極限と同一視できる. 
+\end{remark}
+
+$\infty$圏の関手$f : \C \to \C'$と図式$p : K \to \C$に対して, $p$の余極限$x \in \C_{p/}$が存在するとする. 
+このとき, $f(x) \in \C'_{fp/}$が合成$fp$の余極限であるとは限らない. 
+この節の残りでは, (余)極限を保つような関手について考える. 
+$f : \C \to \C'$を$\infty$圏の関手, $p : K \to \C$を単体的集合の射とする. 
+$p$の余極限$x \in \C_{p/}$が存在して, $f(x) \in \C'_{fp/}$が合成$fp$の余極限であるとき, $f$は余極限を保つ(preserve the colimts)という. 
+
+\begin{proposition} \label{prop.1.2.13.8}
+  $\C$を$\infty$圏, $q : T \to \C$と$p : K \to \C_{/q}$を単体的集合の射とする. 
+  $p_0 := K \xrightarrow{p} \C_{/q} \xrightarrow{\pi} \C$として, $p_0$は$\C$において余極限が存在するとする. 
+  このとき, 次が成立する. 
+  \begin{enumerate}
+    \item $p$は$\C_{/q}$において余極限が存在する.
+    また, この余極限は射影$\pi : \C_{/q} \to \C$によって保たれる.  
+    \item $\tilde{p} : K^\triangleright \to \C_{/q}$が$p$の余極限であることと, $p$が合成$K^\triangleright \xrightarrow{\tilde{p}} \C_{/q} \xrightarrow{\pi} \C$が$p_0$の余極限であることは同値である. 
+  \end{enumerate}
+\end{proposition}
+
+\end{document}

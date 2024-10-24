@@ -1,0 +1,48 @@
+\RequirePackage{plautopatch}
+\documentclass[uplatex, a4paper, 14Q, dvipdfmx]{jsreport}
+\usepackage{docmute}
+\usepackage{../../mypackage}
+
+\setcounter{secnumdepth}{4}
+\title{1.2.16 空間の\texorpdfstring{$\infty$}{infty}圏}
+\author{Keima Akasaka}
+\date{\today}
+
+\begin{document}
+
+% \maketitle
+
+\setcounter{chapter}{1}
+\setcounter{section}{2} 
+\setcounter{subsection}{15}   
+\setcounter{subsubsection}{1}
+
+\subsection{空間の\texorpdfstring{$\infty$}{infty}圏}
+
+通常の圏論において, 多くの圏は$\Set$で豊穣された圏であった. 
+高次圏論におけるこのアナロジーは空間で豊穣された$\infty$圏である.
+
+\begin{definition}[空間の$\infty$圏] \label{def.1.2.16.1}
+  小Kan複体のなす$\sSet$の充満部分圏を$\Kan$と表す. 
+  $\Kan$を単体的圏とみなし, $\Kan$の単体的脈体$\mathfrak{N}(\Kan)$を空間の$\infty$圏($\infty$-category of spaces)といい, $\S$と表す. 
+\end{definition}
+
+\begin{remark} \label{rem.1.2.16.2}
+  $\Kan$の任意の対象$X,Y$に対して, 単体的集合$\Map_{\Kan}(X,Y) = Y^X$はKan複体である. 
+  命題1.1.5.10より, $\S$は$\infty$圏である. 
+\end{remark}
+
+\begin{remark} \label{rem.1.2.16.3}
+  空間の$\infty$圏として, CW複体のなす圏の位相的脈体なども考えられる. 
+  このようなものは全て$\S$と等価であることが分かる. 
+  \Cref{def.1.2.16.1}の定義は$\infty$圏におけるYonedaの補題を示すときに扱いやすいからである. 
+  詳しくは5.1.3節で議論する.
+\end{remark}
+
+\begin{remark} \label{rem.1.2.16.4}
+  $\S$は小Kan複体のなす圏に対して定義されていた. 
+  小とは限らないすべてのKan複体に対して定義される空間の$\infty$圏を$\hat{\S}$と表す. 
+  $\S$は大きい$\infty$圏であるが, $\hat{\S}$はより大きな$\infty$圏であることを後で見る. 
+\end{remark}
+
+\end{document}

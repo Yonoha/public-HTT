@@ -1,0 +1,39 @@
+\RequirePackage{plautopatch}
+\documentclass[uplatex, a4paper, 14Q, dvipdfmx]{jsreport}
+\usepackage{docmute}
+\usepackage{../../mypackage}
+
+\setcounter{secnumdepth}{4}
+\title{1.2.10 忠実充満と本質的全射}
+\author{Keima Akasaka}
+\date{\today}
+
+\begin{document}
+
+% \maketitle
+
+\setcounter{chapter}{1}
+\setcounter{section}{2} 
+\setcounter{subsection}{9}   
+\setcounter{subsubsection}{1}
+
+\subsection{忠実充満と本質的全射}
+
+通常の圏論と同様に, 高次圏の関手の忠実充満性と本質的全射を定義する. 
+圏同値であることと忠実充満かつ本質的全射であることが同値であるという命題は高次圏論でも成立する. 
+
+\begin{definition}[忠実充満, 本質的全射] \label{def.1.2.10.1}
+  $F : \C \to \D$を単体的集合(位相的圏, 単体的圏)の関手とする.
+  誘導される関手$\h F : \h\C \to \h\D$が$\H$豊穣圏の関手として忠実充満のとき, $F$は忠実充満(fully faithful)であるという. 
+  
+  $F : \C \to \D$を単体的集合(位相的圏, 単体的圏)の関手とする.
+  誘導される関手$\h F : \h\C \to \h\D$が通常の本質的全射のとき, $F$は本質的全射(essentially surjective)であるという.
+\end{definition}
+
+\begin{remark} \label{rem.1.2.10.2}
+  \Cref{def.1.2.10.1}の定義ではホモトピー圏の情報しか用いていないため, ここまでで紹介した操作と同値に対して, 忠実充満性や本質的全射性は不変である. 
+\end{remark}
+
+通常の圏論と同様に, 単体的集合(位相的圏, 単体的圏)の関手が同値であることと, 忠実充満かつ本質的全射であることは同値である. 
+
+\end{document}

@@ -1,0 +1,146 @@
+\RequirePackage{plautopatch}
+\documentclass[uplatex, a4paper, 14Q, dvipdfmx]{jsreport}
+\usepackage{docmute}
+\usepackage{../../mypackage}
+
+\setcounter{secnumdepth}{4}
+\title{1.2.12 始対象と終対象}
+\author{Keima Akasaka}
+\date{\today}
+
+\begin{document}
+
+% \maketitle
+
+\setcounter{chapter}{1}
+\setcounter{section}{2} 
+\setcounter{subsection}{11}   
+\setcounter{subsubsection}{1}
+
+\subsection{始対象と終対象}
+
+通常の圏論と同様に, 高次圏における終対象と始対象を定義する. 
+位相的圏$\C$に対して, 射空間の位相を無視して$\C$を通常の圏とみなしたときの終対象を$\C$における終対象と定義することが考えられる. 
+しかし, この定義は強すぎることが分かる. 
+例えば, $\CGWH$において, 1点からなる位相空間$\ast$はこの意味の終対象である.
+しかし, $\ast$と同値な(つまり, 任意の可縮空間)位相空間は$\ast$と同相ではなく, $\CGWH$における終対象ではない. 
+$\infty$圏における概念は同値で保たれるべきであるので, これよりも弱い定義が必要である.  
+
+\begin{definition}[終対象] \label{def.1.2.12.1}
+  $\C$を単体的集合(位相的圏, 単体的圏), $\C$のホモトピー圏$\h\C$を$\H$豊穣圏とみなす. 
+  $\C$の対象$X$が$\h\C$における通常の終対象のとき, $X$を終対象(final object)という. 
+\end{definition}
+
+\begin{remark} \label{rem.1.2.12.2}
+  \Cref{def.1.2.12.1}の定義において, ホモトピー圏の情報しか用いていないので, ここまでで紹介した操作と同値に対して, 終対象性は不変である. 
+\end{remark}
+
+$\infty$圏の枠組みにおいては, より良い定義として強終対象がある. 
+\Cref{cor.1.2.12.5}で, $\infty$圏において, これが終対象と同値な定義であることを見る. 
+
+\begin{definition}[強終対象] \label{def.1.2.12.3}
+  $\C$を単体的集合, $X$を$\C$の対象とする. 
+  射影$\C_{/ X} \to \C$が自明なKanファイブレーションのとき, $X$を強終対象(strongly final object)という. 
+\end{definition}
+
+% \begin{lemma} \label{prop.terminal_equal_extension_property}
+%   $\C$を単体的集合, $X$を$\C$の対象とする. 
+%   このとき, 次は同値である. 
+%   \begin{enumerate}
+%     \item $X$は強終対象である.
+%     \item 任意の$n \geq 1$に対して, 次の図式はリフトを持つ.
+%     % https://q.uiver.app/#q=WzAsNCxbMSwwLCJcXHBhcnRpYWwgXFxEZWx0YV5uIl0sWzEsMSwiXFxEZWx0YV5uIl0sWzIsMCwiXFxDIl0sWzAsMCwiXFxEZWx0YV57XFx7blxcfX0iXSxbMCwxLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDJdLFsxLDIsIiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFszLDBdLFszLDIsIlgiLDAseyJjdXJ2ZSI6LTJ9XV0=
+%     \[\begin{tikzcd}
+%       {\Delta^{\{n\}}} & {\partial \Delta^n} & \C \\
+%       & {\Delta^n}
+%       \arrow[hook, from=1-2, to=2-2]
+%       \arrow[from=1-2, to=1-3]
+%       \arrow[dashed, from=2-2, to=1-3]
+%       \arrow[from=1-1, to=1-2]
+%       \arrow["X", curve={height=-12pt}, from=1-1, to=1-3]
+%     \end{tikzcd}\] 
+%   \end{enumerate}
+% \end{lemma}
+
+% \begin{proof}
+%   $\C_{/ X}$の定義から, (2)の図式のリフト性は次の図式のリフト性と同値である. 
+%   % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXHBhcnRpYWwgXFxEZWx0YV57bi0xfSJdLFswLDEsIlxcRGVsdGFee24tMX0iXSxbMSwwLCJcXENfey8gWH0iXSxbMSwxLCJcXEMiXSxbMCwxLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDJdLFsxLDIsIiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsyLDNdLFsxLDNdXQ==
+%   \[\begin{tikzcd}
+%     {\partial \Delta^{n-1}} & {\C_{/ X}} \\
+%     {\Delta^{n-1}} & \C
+%     \arrow[hook, from=1-1, to=2-1]
+%     \arrow[from=1-1, to=1-2]
+%     \arrow[dashed, from=2-1, to=1-2]
+%     \arrow[from=1-2, to=2-2]
+%     \arrow[from=2-1, to=2-2]
+%   \end{tikzcd}\]
+% \end{proof}
+
+\begin{proposition}  \label{prop.1.2.12.4}
+  $\C$を$\infty$圏, $Y$を$\C$の対象とする. 
+  このとき, 次は同値である. 
+  \begin{enumerate}
+    \item $Y$は強終対象である. 
+    \item $\C$の任意の対象$X$に対して, $\Hom^\R_\C(X,Y)$は可縮なKan複体である.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof} 
+  $\Hom^\R_\C(X,Y)$の定義より, $\Hom^\R_\C(X,Y)$はファイバー$(\C_{/ Y})_X = \C_{/ Y} \times_\C \{X\}$と同一視できる. 
+
+  (1)から(2)を示す. 
+  $Y$が強終対象のとき, 射影$p : \C_{/ Y} \to \C$は自明なKanファイブレーションである. 
+  自明なKanファイブレーションの集まりはプルバックで閉じるので, ファイバー$\C_{/ Y} \times_\C \{X\}$は可縮なKan複体である. 
+
+  (2)から(1)を示す. 
+  $\C$の任意の対象$X$に対して, $\Hom^\R_\C(X,Y) = (\C_{/ Y})_X$が可縮であるとする. 
+  命題2.1.2.1より, $p$は右ファイブレーションである. 
+  補題2.1.3.4より, $p$は自明なKanファイブレーションである. 
+\end{proof}
+
+\begin{corollary} \label{cor.1.2.12.5}
+  $\C$を単体的集合とする. 
+  $\C$における任意の強終対象は終対象である. 
+  逆は$\C$が$\infty$圏のときに成立する.
+\end{corollary}
+
+\begin{remark} \label{rem.1.2.12.6}
+  終対象の双対として, $\infty$圏における始対象が考えられる.
+\end{remark}
+
+\begin{example} \label{eg.1.2.12.7}
+  $\C$を通常の圏とする. 
+  $\N(\C)$における対象が終(始)対象であることと, $\C$において通常の意味で終(始)対象であることは同値である. 
+  これは圏同値$\h\N(\C) \cong \C$が成立することから従う. 
+\end{example}
+
+\begin{remark} \label{rem.1.2.12.8}
+  \Cref{def.1.2.12.3}は$\C$が$\infty$圏の場合でないと意味をなさない. 
+  例えば, $\C$が$\infty$圏でないとき, $\C$の強終点の集まりが同値で安定とは限らない.
+\end{remark}
+
+通常の圏における終対象は同型を除いて一意に定まる. 
+$\infty$圏における終対象も同様の主張ができるが, 「一意に」という概念をホモトピー論的な言葉に置き換える必要がある. 
+実際, 終対象は可縮な空間の選択を除いて一意に定まる. 
+
+\begin{proposition}[Joyal] \label{prop.1.2.12.9}
+  $\C$を$\infty$圏, $\C'$を$\C$の終対象のなす$\C$の充満部分圏とする. 
+  このとき, $\C'$は空または可縮なKan複体である.  
+\end{proposition}
+
+\begin{proof}
+  $\C'$が空でないとする. 
+  次の図式がリフトを持つことを示せばよい. 
+  % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXHBhcnRpYWwgXFxEZWx0YV5uIl0sWzAsMSwiXFxEZWx0YV5uIl0sWzEsMCwiXFxDJyJdLFswLDEsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsMl0sWzEsMiwiIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+  \[\begin{tikzcd}
+    {\partial \Delta^n} & {\C'} \\
+    {\Delta^n}
+    \arrow[hook, from=1-1, to=2-1]
+    \arrow[from=1-1, to=1-2]
+    \arrow[dashed, from=2-1, to=1-2]
+  \end{tikzcd}\]
+  $n=0$のとき, $\C'$は空でない仮定から従う. 
+  $n \geq 1$のとき, $\partial \Delta^n$の対象$\Delta^{\{n\}}$が終対象にうつることから従う. 
+\end{proof}
+
+\end{document}
